@@ -1,5 +1,3 @@
-<center>
-
 # RepoTemplate
 
 [![python](https://img.shields.io/badge/-Python_3.8_%7C_3.9_%7C_3.10%7C_3.11-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -13,8 +11,6 @@
 [![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/Mai0313/repo_template/tree/master?tab=License-1-ov-file)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Mai0313/repo_template/pulls)
 [![contributors](https://img.shields.io/github/contributors/Mai0313/repo_template.svg)](https://github.com/Mai0313/repo_template/graphs/contributors)
-
-</center>
 
 A clean template to kickstart your deep learning project 🚀⚡🔥
 Click on [<kbd>Use this template</kbd>](https://github.com/Mai0313/repo_template/generate) to initialize new repository.

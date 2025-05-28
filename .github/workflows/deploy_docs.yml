@@ -44,7 +44,6 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           version: "latest"
-          pyproject-file: "pyproject.toml"
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy docs
