@@ -6,12 +6,6 @@
 
 version: 2
 updates:
-  # npm
-  - package-ecosystem: npm
-    directory: /
-    schedule:
-      interval: daily
-
   # pip (Python)
   - package-ecosystem: pip
     directory: /
@@ -44,12 +38,6 @@ updates:
 
   # GitHub Actions
   - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: weekly
-
-  # git submodules
-  - package-ecosystem: gitsubmodule
     directory: /
     schedule:
       interval: weekly

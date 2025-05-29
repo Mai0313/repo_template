@@ -1,4 +1,4 @@
-name: Publish docs via GitHub Pages
+name: Publish GitHub Pages
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
 permissions: write-all
 
 jobs:
-  build:
-    name: Deploy docs
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     # container: catthehacker/ubuntu:act-20.04  # Uncomment it if you use it on Gitea
 
