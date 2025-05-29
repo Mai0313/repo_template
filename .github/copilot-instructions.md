@@ -1,28 +1,75 @@
 <!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
+⚠️ **IMPORTANT**: After making any code changes, adding features, or updating functionality, you MUST update both this file (.github/copilot-instructions.md) and README.md to reflect the current project state and capabilities.
+
+# Python Project Template
+
+This is a comprehensive Python project template designed to help developers quickly bootstrap new projects with complete CI/CD pipelines, modern tooling, and best practices. The template includes everything needed to start a professional Python project without spending time on infrastructure setup.
+
+## Project Features
+
+### Core Infrastructure
+
+- **Modern Python**: Supports Python 3.10, 3.11, and 3.12
+- **Dependency Management**: Uses `uv` for fast and reliable dependency management
+- **Project Structure**: src/ layout following Python packaging best practices
+- **Docker Support**: Multi-stage Dockerfile for development and production
+- **VS Code Dev Container**: Fully configured development environment with zsh, oh-my-zsh, and powerlevel10k
+
+### Code Quality & Testing
+
+- **Pre-commit Hooks**: Automated code formatting and linting with ruff
+- **Testing Framework**: pytest with coverage reporting, parallel execution, and detailed reporting
+- **Code Coverage**: Comprehensive coverage tracking with HTML and XML reports
+- **Type Checking**: Full type hint support and validation
+
+### CI/CD Pipeline
+
+- **Automated Testing**: Multi-version Python testing on pull requests
+- **Code Quality Checks**: Automated ruff checks and pre-commit validation
+- **Documentation Deployment**: Automatic GitHub Pages deployment for MkDocs
+- **Release Management**: Automated release drafting and semantic versioning
+- **Auto-labeling**: Intelligent PR labeling based on changes
+
+### Documentation
+
+- **MkDocs**: Material theme with automatic API documentation generation
+- **Auto-generated Docs**: Scripts to generate documentation from Python code and Jupyter notebooks
+- **Blog Support**: Built-in blog functionality for project updates
+
+### Automation Scripts
+
+- **Project Initialization**: Go script (`scripts/initpyrepo.go`) for creating new projects from template
+- **Documentation Generation**: Python script (`scripts/gen_docs.py`) for auto-generating docs from code
+
+## Project Usage
+
+This template is designed to be cloned and customized for new Python projects. Developers can use the initialization script to create new projects with personalized configurations while maintaining all the CI/CD and tooling benefits.
+
+### Template Customization Strategy
+
+When users clone this project, they can quickly customize it by performing global replacements:
+
+- **Replace `repo_template`** → Replace with their actual project name (snake_case format)
+- **Replace `RepoTemplate`** → Replace with their project title (PascalCase format)
+
+This allows users to instantly personalize the entire project structure, package names, imports, and documentation while keeping all the CI/CD infrastructure intact.
+
 # Python Best Practices
 
-## Project Structure
+## Coding Style
 
-- Use src-layout with `src/your_package_name/`
-- Place tests in `tests/` directory parallel to `src/`
-- Keep configuration in `config/` or as environment variables
-- Store requirements in `pyproject.toml`
-- Place static files in `static/` directory
-- Use `templates/` for Jinja2 templates
-- Use `docs/` for documentation
-
-## Code Style
-
-- Follow ruff for linting
+- Follow `ruff-check` and `ruff-format` for code style and formatting using `pre-commit` hooks.
 - Follow PEP 8 naming conventions:
     - snake_case for functions and variables
     - PascalCase for classes
     - UPPER_CASE for constants
+- Follow the Python version specified in the `pyproject.toml` or `.python-version` file.
 - Use pydantic model, and all pydantic models should include `Field`, and `description` should be included.
 - Maximum line length of 99 characters
 - Use absolute imports over relative imports
-    Example:
+
+### Example
 
 ```python
 from pydantic import BaseModel, Field
@@ -56,53 +103,21 @@ def foo(self, extra_input: str) -> str:
 - Use `TypeVar` for generic types
 - Use `Protocol` for duck typing
 
-## Testing
-
-- Use pytest for testing
-- Write tests for all routes
-- Use pytest-cov for coverage
-- Implement proper fixtures
-- Use proper mocking with pytest-mock
-- Test all error scenarios
-
-## Performance
-
-- Use proper caching with Flask-Caching
-- Implement database query optimization
-- Use proper connection pooling
-- Implement proper pagination
-- Use background tasks for heavy operations
-- Monitor application performance
-
-## Error Handling
-
-- Create custom exception classes
-- Use proper try-except blocks
-- Implement proper logging
-- Return proper error responses
-- Handle edge cases properly
-- Use proper error messages
-
 ## Documentation
 
 - Use Google-style docstrings
 - All documentation should be in English
-- The most of the documentation should be in the code, but there are some exceptions:
-    - `Installation` and `Project Background` is hard to include in the code, so it should be written in a markdown file under `docs/`
-- Keep README.md updated
 - Use proper inline comments for better mkdocs support
 - Document environment setup
-
-## Development Workflow
-
-- Use virtual environments (venv)
-- Implement pre-commit hooks
-- Use proper Git workflow
-- Follow semantic versioning and commit message conventions
-- Use proper CI/CD practices
 
 ## Dependencies
 
 - Use `uv` for dependency management
 - Separate dev dependencies by adding `--dev` flag when adding dependencies
+    - Production:
+        - Add Dependencies: `uv add <package>`
+        - Remove Dependencies: `uv remove <package>`
+    - Development:
+        - Add Dependencies: `uv add <package> --dev`
+        - Remove Dependencies: `uv remove <package> --dev`
 - Regularly update dependencies
