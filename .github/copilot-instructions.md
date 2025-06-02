@@ -68,6 +68,7 @@ This allows users to instantly personalize the entire project structure, package
 - Use pydantic model, and all pydantic models should include `Field`, and `description` should be included.
 - Maximum line length of 99 characters
 - Use absolute imports over relative imports
+- Use `pytest` for testing, and all tests should be placed in the `tests/` directory
 
 ### Example
 
