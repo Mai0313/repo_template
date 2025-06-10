@@ -73,7 +73,6 @@ jobs:
           VERSION=$(uvx dunamai from git --bump --no-metadata --style pep440)
           uv version $VERSION
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-          echo "GITHUB_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
 
       # - name: Set tags
       #   run: |
