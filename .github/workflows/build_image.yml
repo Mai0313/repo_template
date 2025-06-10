@@ -76,13 +76,12 @@ jobs:
           echo "GITHUB_SHA=${GITHUB_SHA}" >> $GITHUB_ENV
 
       # - name: Set tags
-      #   id: set-tags
       #   run: |
       #     if [[ $GITHUB_REF == refs/tags/* ]]; then
-      #       TAG_NAME=${GITHUB_REF#refs/tags/}
-      #       echo "MAIN_TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+      #       VERSION=${GITHUB_REF#refs/tags/}
+      #       echo "VERSION=${VERSION}" >> $GITHUB_ENV
       #     else
-      #       echo "MAIN_TAG=latest" >> $GITHUB_OUTPUT
+      #       echo "VERSION=latest" >> $GITHUB_ENV
       #     fi
 
       - name: Login to the Container registry

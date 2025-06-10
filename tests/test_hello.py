@@ -1,4 +1,5 @@
 import pytest
+
 from src.repo_template.hello import hello_fn, a_hello_fn
 
 
