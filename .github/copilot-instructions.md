@@ -1,6 +1,6 @@
 <!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
 
-⚠️ **IMPORTANT**: After making any code changes, adding features, or updating functionality, you MUST update both this file (.github/copilot-instructions.md) and README.md to reflect the current project state and capabilities.
+⚠️ **IMPORTANT**: After making any code changes, adding features, or updating functionality, you MUST update .github/copilot-instructions.md to reflect the current project state and capabilities.
 
 # Python Project Template
 
