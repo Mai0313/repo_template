@@ -1,5 +1,5 @@
 # Feature Branches
-enhancement:
+feature:
   - head-branch:
       - "feat/*" # Feature branches
       - "refactor/*" # Refactor branches
@@ -11,7 +11,7 @@ enhancement:
           - "!src/docs/*"
 
 # Bug Fixes
-bug:
+bugfix:
   - head-branch:
       - "^bug" # Branches starting with 'bug'
       - "bug"
