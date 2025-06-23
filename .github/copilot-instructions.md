@@ -2,13 +2,21 @@
 
 ⚠️ **IMPORTANT**: After making any code changes, adding features, or updating functionality, you MUST update .github/copilot-instructions.md to reflect the current project state and capabilities.
 
-# Python Project Template
+# Project Background
 
-This is a comprehensive Python project template designed to help developers quickly bootstrap new projects with complete CI/CD pipelines, modern tooling, and best practices. The template includes everything needed to start a professional Python project without spending time on infrastructure setup.
+<!-- This section provides context about the project, its purpose, and any relevant background information -->
 
-## Project Features
+<!-- Example -->
 
-### Core Infrastructure
+<!-- This is a comprehensive Python project template designed to help developers quickly bootstrap new projects with complete CI/CD pipelines, modern tooling, and best practices. The template includes everything needed to start a professional Python project without spending time on infrastructure setup. -->
+
+# Project Structure / Features
+
+<!-- This section outlines the key features and structure of the project, including directories, files, and their purposes -->
+
+<!-- Example -->
+
+<!-- ## Core Infrastructure
 
 - **Modern Python**: Supports Python 3.10, 3.11, and 3.12
 - **Dependency Management**: Uses `uv` for fast and reliable dependency management
@@ -16,14 +24,14 @@ This is a comprehensive Python project template designed to help developers quic
 - **Docker Support**: Multi-stage Dockerfile for development and production
 - **VS Code Dev Container**: Fully configured development environment with zsh, oh-my-zsh, and powerlevel10k
 
-### Code Quality & Testing
+## Code Quality & Testing
 
 - **Pre-commit Hooks**: Automated code formatting and linting with ruff
 - **Testing Framework**: pytest with coverage reporting, parallel execution, and detailed reporting
 - **Code Coverage**: Comprehensive coverage tracking with HTML and XML reports
 - **Type Checking**: Full type hint support and validation
 
-### CI/CD Pipeline
+## CI/CD Pipeline
 
 - **Automated Testing**: Multi-version Python testing on pull requests
 - **Code Quality Checks**: Automated ruff checks and pre-commit validation
@@ -31,13 +39,13 @@ This is a comprehensive Python project template designed to help developers quic
 - **Release Management**: Automated release drafting and semantic versioning
 - **Auto-labeling**: Intelligent PR labeling based on changes
 
-### Documentation
+## Documentation
 
 - **MkDocs**: Material theme with automatic API documentation generation
 - **Auto-generated Docs**: Scripts to generate documentation from Python code and Jupyter notebooks
 - **Blog Support**: Built-in blog functionality for project updates
 
-### Automation Scripts
+## Automation Scripts
 
 - **Project Initialization**: Go script (`scripts/initpyrepo.go`) for creating new projects from template
 - **Documentation Generation**: Python script (`scripts/gen_docs.py`) for auto-generating docs from code
@@ -46,18 +54,22 @@ This is a comprehensive Python project template designed to help developers quic
 
 This template is designed to be cloned and customized for new Python projects. Developers can use the initialization script to create new projects with personalized configurations while maintaining all the CI/CD and tooling benefits.
 
-### Template Customization Strategy
+## Template Customization Strategy
 
 When users clone this project, they can quickly customize it by performing global replacements:
 
 - **Replace `repo_template`** → Replace with their actual project name (snake_case format)
 - **Replace `RepoTemplate`** → Replace with their project title (PascalCase format)
 
-This allows users to instantly personalize the entire project structure, package names, imports, and documentation while keeping all the CI/CD infrastructure intact.
+This allows users to instantly personalize the entire project structure, package names, imports, and documentation while keeping all the CI/CD infrastructure intact. -->
 
-# Python Best Practices
+# Rule Sheet
 
-## Coding Style
+<!-- This section outlines the coding standards, practices, and guidelines to follow when contributing to this project. It ensures consistency, maintainability, and quality across the codebase. -->
+
+<!-- Example -->
+
+<!-- ## Coding Style
 
 - Follow `ruff-check` and `ruff-format` for code style and formatting using `pre-commit` hooks.
 - Follow PEP 8 naming conventions:
@@ -121,4 +133,4 @@ def foo(self, extra_input: str) -> str:
     - Development:
         - Add Dependencies: `uv add <package> --dev`
         - Remove Dependencies: `uv remove <package> --dev`
-- Regularly update dependencies
+- Regularly update dependencies -->
