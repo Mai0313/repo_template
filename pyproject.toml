@@ -266,7 +266,7 @@ line-length = 99
 # Enable preview features.
 preview = true
 detect-string-imports = true
-direction = "Dependencies"
+direction = "dependencies"
 
 
 [tool.ruff.lint]
