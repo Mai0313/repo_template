@@ -30,8 +30,6 @@ jobs:
           - name: Build and Push Images (Latest / Release)
             target_step: prod
             tag: ghcr.io/${{ github.repository }}
-            # tag: ghcr.io/mai0313/${{ github.event.repository.name }}
-            # tag: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
 
     env:
       BUILDKIT_NO_CLIENT_TOKEN: 1 # docker buildkit env
@@ -128,7 +126,6 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          context: .
           images: ${{ matrix.target.tag }}
           tags: |
             latest
@@ -140,8 +137,6 @@ jobs:
           echo ${{ steps.meta.outputs.json }}
           echo "Tags"
           echo ${{ steps.meta.outputs.tags }}
-          echo "Labels"
-          echo ${{ steps.meta.outputs.labels }}
 
       - name: ${{ matrix.target.name }}
         uses: docker/build-push-action@v6
@@ -150,8 +145,6 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           target: ${{ matrix.target.target_step }}
-          build-args: ${{ matrix.target.build_args }}
-          labels: ${{ steps.meta.outputs.labels }}
           tags: |
             ${{ steps.meta.outputs.tags }}
           sbom: false
