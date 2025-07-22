@@ -143,6 +143,6 @@ jobs:
           sbom: false
           provenance: false
           cache-from: |
-            type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache
+            type=registry,ref=${{ steps.meta.outputs.tags }}-buildcache
           cache-to: |
-            type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache,image-manifest=true,oci-mediatypes=true,mode=max
+            type=registry,ref=${{ steps.meta.outputs.tags }}-buildcache,image-manifest=true,oci-mediatypes=true,mode=max
