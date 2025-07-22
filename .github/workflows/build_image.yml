@@ -29,7 +29,7 @@ jobs:
         target:
           - name: Build and Push Images (Latest / Release)
             target_step: prod
-            tag: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}
+            tag: ghcr.io/${{ github.repository }}
 
     env:
       BUILDKIT_NO_CLIENT_TOKEN: 1 # docker buildkit env
