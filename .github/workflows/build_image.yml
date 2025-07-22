@@ -128,7 +128,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}
+          images: ${{ matrix.target.tag }}
           tags: |
             latest
             ${{ steps.version.outputs.version }}
@@ -150,11 +150,10 @@ jobs:
           file: ./docker/Dockerfile
           target: ${{ matrix.target.target_step }}
           build-args: ${{ matrix.target.build_args }}
-          labels: ${{ steps.version.outputs.version }}
+          labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ${{ matrix.target.tag }}:latest
-            ${{ matrix.target.tag }}:${{ steps.version.outputs.version }}
+            ${{ steps.meta.outputs.tags }}
           sbom: false
           provenance: false
-          cache-from: type=registry,ref=${{ matrix.target.tag }}:buildcache
-          cache-to: type=registry,ref=${{ matrix.target.tag }}:buildcache,image-manifest=true,oci-mediatypes=true,mode=max
+          cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache
+          cache-to: type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache,image-manifest=true,oci-mediatypes=true,mode=max
