@@ -134,15 +134,15 @@ jobs:
       - name: Check Meta
         run: |
           echo "Version"
-          echo ${{ steps.version.outputs.version }}
+          echo "${{ steps.version.outputs.version }}"
           echo "Tags"
-          echo ${{ steps.meta.outputs.tags }}
+          echo "${{ steps.meta.outputs.tags }}"
           echo "Labels"
-          echo ${{ steps.meta.outputs.labels }}
+          echo "${{ steps.meta.outputs.labels }}"
           echo "Annotations"
-          echo ${{ steps.meta.outputs.annotations }}
+          echo "${{ steps.meta.outputs.annotations }}"
           echo "Json"
-          echo ${{ steps.meta.outputs.json }}
+          echo "${{ steps.meta.outputs.json }}"
 
       - name: ${{ matrix.target.name }}
         uses: docker/build-push-action@v6
