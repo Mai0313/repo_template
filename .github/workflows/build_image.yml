@@ -129,7 +129,9 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
-          tags: ${{ steps.version.outputs.version }}
+          tags: |
+            latest
+            ${{ steps.version.outputs.version }}
 
       - name: Check Meta
         run: |
@@ -139,8 +141,6 @@ jobs:
           echo ${{ steps.meta.outputs.tags }}
           echo "Labels"
           echo ${{ steps.meta.outputs.labels }}
-          echo "Bake file"
-          echo ${{ steps.meta.outputs.bake-file }}
 
       - name: ${{ matrix.target.name }}
         uses: docker/build-push-action@v6
