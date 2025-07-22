@@ -131,13 +131,6 @@ jobs:
             latest
             ${{ steps.version.outputs.version }}
 
-      - name: Check Meta
-        run: |
-          echo "Json"
-          echo ${{ steps.meta.outputs.json }}
-          echo "Tags"
-          echo ${{ steps.meta.outputs.tags }}
-
       - name: ${{ matrix.target.name }}
         uses: docker/build-push-action@v6
         with:
