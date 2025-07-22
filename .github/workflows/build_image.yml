@@ -131,6 +131,19 @@ jobs:
             latest
             ${{ steps.version.outputs.version }}
 
+      - name: Check Meta
+        run: |
+          echo "Version"
+          echo ${{ steps.version.outputs.version }}
+          echo "Tags"
+          echo ${{ steps.meta.outputs.tags }}
+          echo "Labels"
+          echo ${{ steps.meta.outputs.labels }}
+          echo "Annotations"
+          echo ${{ steps.meta.outputs.annotations }}
+          echo "Json"
+          echo ${{ steps.meta.outputs.json }}
+
       - name: ${{ matrix.target.name }}
         uses: docker/build-push-action@v6
         with:
@@ -142,5 +155,5 @@ jobs:
             ${{ steps.meta.outputs.tags }}
           sbom: false
           provenance: false
-          cache-from: type=gha
-          cache-to: type=gha,image-manifest=true,oci-mediatypes=true,mode=max
+          cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache
+          cache-to: type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache,image-manifest=true,oci-mediatypes=true,mode=max
