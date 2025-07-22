@@ -144,6 +144,14 @@ jobs:
           echo "Json"
           echo "${{ steps.meta.outputs.json }}"
 
+      - name: Extract Base Image Name
+        id: base_image
+        run: |
+          # 從第一個 tag 中提取基礎 image 名稱（去掉版本標籤）
+          BASE_IMAGE=$(echo "${{ steps.meta.outputs.tags }}" | head -n1 | cut -d':' -f1)
+          echo "base_image=$BASE_IMAGE" >> $GITHUB_OUTPUT
+          echo "Base image for cache: $BASE_IMAGE"
+
       - name: ${{ matrix.target.name }}
         uses: docker/build-push-action@v6
         with:
@@ -155,5 +163,5 @@ jobs:
             ${{ steps.meta.outputs.tags }}
           sbom: false
           provenance: false
-          cache-from: type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache
-          cache-to: type=registry,ref=${{ steps.meta.outputs.tags }}:buildcache,image-manifest=true,oci-mediatypes=true,mode=max
+          cache-from: type=registry,ref=${{ steps.base_image.outputs.base_image }}:buildcache
+          cache-to: type=registry,ref=${{ steps.base_image.outputs.base_image }}:buildcache,image-manifest=true,oci-mediatypes=true,mode=max
