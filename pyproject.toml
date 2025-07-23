@@ -117,7 +117,7 @@ allow-direct-references = true
 
 [tool.hatch.build]
 include = [
-    "src/*"
+    "src/repo_template"
 ]
 
 [tool.hatch.build.targets.wheel]
@@ -179,8 +179,8 @@ docs = ["docs_gen", "docs_run"]
 [tool.uv]
 managed = true
 package = false
-check-url = "https://test.pypi.org/simple"
-publish-url = "https://test.pypi.org/legacy/"
+check-url = "https://pypi.org/simple"
+publish-url = "https://upload.pypi.org/legacy/"
 compile-bytecode = true
 # concurrent-builds = 4
 # concurrent-downloads = 4
