@@ -121,7 +121,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/template"]
+packages = ["src/repo_template"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
