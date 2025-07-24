@@ -36,12 +36,5 @@ def hello_fn() -> Response:
     return template_model
 
 
-def main() -> None:
-    """Main function to run the CLI."""
-    import fire
-
-    fire.Fire(hello_fn)
-
-
 if __name__ == "__main__":
-    main()
+    hello_fn()

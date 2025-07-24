@@ -1,4 +1,17 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+      target: prod
+    env_file:
+      - .env
+    command:
+      - python
+      - src/repo_template/cli.py
+    restart: always
+    pull_policy: always
+
   redis:
     image: redis:alpine
     healthcheck:
