@@ -36,17 +36,12 @@ def hello_fn() -> Response:
     return template_model
 
 
-async def a_hello_fn() -> Response:
-    """Asynchronous function that creates a Response object with a greeting message.
+def main() -> None:
+    """Main function to run the CLI."""
+    import fire
 
-    Returns:
-        Response: An object containing the name and greeting message.
-    """
-    name = "Wei"
-    content = "Hello, World!"
-    template_model = Response(name=name, content=content)
-    return template_model
+    fire.Fire(hello_fn)
 
 
 if __name__ == "__main__":
-    result = hello_fn()
+    main()
