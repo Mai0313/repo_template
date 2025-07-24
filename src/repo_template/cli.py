@@ -36,17 +36,5 @@ def hello_fn() -> Response:
     return template_model
 
 
-async def a_hello_fn() -> Response:
-    """Asynchronous function that creates a Response object with a greeting message.
-
-    Returns:
-        Response: An object containing the name and greeting message.
-    """
-    name = "Wei"
-    content = "Hello, World!"
-    template_model = Response(name=name, content=content)
-    return template_model
-
-
 if __name__ == "__main__":
-    result = hello_fn()
+    hello_fn()

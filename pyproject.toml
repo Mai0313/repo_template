@@ -68,12 +68,15 @@ authors = [
     { name = "Wei", email = "mai@mai0313.com" },
 ]
 dependencies = [
-    "pydantic>=2.11.5",
-    "pydantic-settings>=2.9.1",
+    "pydantic>=2.11.7",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"
 license = { text = "MIT" }
+
+[project.scripts]
+cli = "repo_template.cli:hello_fn"
+repo_template = "repo_template.cli:hello_fn"
 
 [project.urls]
 Homepage = "https://github.com/Mai0313/repo_template"
@@ -165,8 +168,8 @@ content-type = "text/markdown"
 path = "README.md"
 
 [tool.poe.tasks]
-api = "python ./api.py"
-main = "python ./main.py"
+api = "python ./src/repo_template/cli.py"
+main = "python ./src/repo_template/cli.py"
 
 # Documentation
 docs_gen = "make gen-docs"
@@ -178,7 +181,8 @@ docs = ["docs_gen", "docs_run"]
 # https://docs.astral.sh/uv/reference/settings
 [tool.uv]
 managed = true
-package = false
+# If you don't want to use the `uv` CLI, you can set this to false.
+package = true
 check-url = "https://pypi.org/simple"
 publish-url = "https://upload.pypi.org/legacy/"
 compile-bytecode = true
