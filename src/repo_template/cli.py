@@ -21,7 +21,7 @@ class Response(BaseModel):
     )
 
 
-def hello_fn() -> Response:
+def main() -> Response:
     """Generates a greeting response.
 
     This function creates a Response object with a predefined name and content.
@@ -37,4 +37,4 @@ def hello_fn() -> Response:
 
 
 if __name__ == "__main__":
-    hello_fn()
+    main()

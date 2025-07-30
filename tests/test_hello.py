@@ -1,7 +1,7 @@
-from src.repo_template.cli import hello_fn
+from src.repo_template.cli import main
 
 
-def test_hello():
-    hello = hello_fn()
+def test_main():
+    hello = main()
     assert hello.name == "Wei"
     assert hello.content == "Hello, World!"
