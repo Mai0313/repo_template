@@ -7,8 +7,11 @@ services:
     env_file:
       - .env
     command:
-      - python
-      - src/repo_template/cli.py
+      - uv
+      - run
+      - --no-dev
+      - --frozen
+      - repo_template
     restart: always
     pull_policy: always
 
