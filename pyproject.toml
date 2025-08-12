@@ -377,7 +377,7 @@ ignore = [
     "PERF401",
     # Use `list` or `list.copy` to create a copy of a list
     "PERF402",
-    ]
+]
 
 [tool.ruff.lint.pycodestyle]
 # Ignore long comments for TODO, FIXME, XXX
@@ -461,29 +461,6 @@ indent-style = "space"
 line-ending = "auto"
 quote-style = "double"
 skip-magic-trailing-comma = true
-
-# ================== #
-#      Logfire       #
-# ================== #
-
-# For more info:
-# https://docs.pydantic.dev/logfire/api/logfire/#logfire.configure
-[tool.logfire]
-send_to_logfire = false
-token = false
-project_name = "repo_template"
-trace_sample_rate = 1.0
-console_colors = "auto"
-console_span_style = "show-parents"
-console_include_timestamps = true
-console_verbose = true
-console_min_log_level = "debug"
-show_summary = true
-data_dir = "./.cache/.logfire"
-# base_url = ""
-collect_system_metrics = false
-id_generator = true
-fast_shutdown=true
 
 
 # ================== #
