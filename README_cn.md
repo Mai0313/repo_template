@@ -14,180 +14,269 @@
 
 </center>
 
-🚀 **一個完整的 Python 專案模板，幫助開發者快速啟動專案，內含完整的 CI/CD 流水線和現代化工具**
+🚀 幫助 Python 開發者「快速建立新專案」的模板。內建現代化套件管理、工具鏈、Docker 與完整 CI/CD 工作流程。
 
-點擊 [<kbd>使用此模板</kbd>](https://github.com/Mai0313/repo_template/generate) 來建立新的儲存庫。
+點擊 [使用此模板](https://github.com/Mai0313/repo_template/generate) 後即可開始。
 
-**其他語言版本**: [English](README.md) | [中文](README_cn.md)
+其他語言: [English](README.md) | [中文](README_cn.md)
 
-## ✨ 功能特色
+## ✨ 重點特色
 
-### 🏗️ **現代化專案結構**
-
-- **src/ 佈局**: 遵循 Python 封裝最佳實踐
-- **uv 依賴管理**: 快速、可靠的現代化依賴解析
-- **多版本支援**: Python 3.10、3.11 和 3.12
-- **型別提示**: 完整的型別註解支援與驗證
-
-### 🔧 **開發環境**
-
-- **VS Code Dev Container**: 完整配置，包含 zsh、oh-my-zsh 和 powerlevel10k 主題
-- **Docker 支援**: 開發和生產環境的多階段 Dockerfile
-- **Pre-commit hooks**: 使用 ruff 自動化程式碼格式化和檢查
-- **本地開發**: 使用 Make 命令輕鬆設定
-
-### 🧪 **測試與品質保證**
-
-- **pytest 框架**: 全面的測試與覆蓋率報告
-- **平行執行**: 使用 pytest-xdist 加速測試執行
-- **程式碼覆蓋率**: HTML 和 XML 報告，可配置閾值
-- **品質門檻**: 每次提交都自動進行程式碼品質檢查
-
-### 🚀 **完整 CI/CD 流水線**
-
-- **多版本測試**: 跨 Python 版本的自動化測試
-- **程式碼品質檢查**: ruff 檢查和格式化驗證
-- **文檔部署**: 自動 GitHub Pages 部署
-- **發布自動化**: 語義化版本控制和發布草稿
-- **自動標籤**: 智能 PR 分類
-
-### 📚 **文檔系統**
-
-- **MkDocs Material**: 美觀且響應式的文檔
-- **自動生成**: 從程式碼和筆記本自動生成文檔的腳本
-- **API 文檔**: 自動 API 參考生成
-- **部落格支援**: 內建專案更新部落格功能
-
-### 🤖 **自動化腳本**
-
-- **文檔生成**: `scripts/gen_docs.py` 用於自動生成文檔
-- **Makefile 命令**: 常見開發任務自動化
+- 現代 `src/` 佈局 + 全面型別註解
+- `uv` 超快依賴管理
+- pre-commit 套件鏈：ruff、mdformat（含多插件）、codespell、nbstripout、mypy、uv hooks
+- 型別嚴謹：mypy + Pydantic 外掛設定
+- pytest + coverage + xdist；PR 覆蓋率摘要留言
+    - 覆蓋率門檻 80%，HTML/XML 報告輸出至 `.github/`
+- MkDocs Material + mkdocstrings（繼承圖）、markdown-exec、MathJax
+    - 開發伺服器 `0.0.0.0:9987`；雙語文件腳手架
+- 文件生成腳本：支援 class/檔案兩種模式、可選執行 notebook、可併發、保留目錄結構
+    - 使用 anyio 非同步處理與 rich 進度條
+- 打包：`uv build`、PyPI README（hatch-fancy-pypi-readme）、git-cliff 產 changelog
+- CI 自動版本：以 `dunamai` 從 git 產 PEP 440 版本
+- Dockerfile 多階段（內含 uv/uvx 與 Node.js）；Compose 服務（Redis/Postgres/Mongo/MySQL）含 healthcheck 與 volume
+- GitHub Actions：測試、品質、文件部署、套件打包、Docker 推送（GHCR + buildx cache）、Release Drafter、自動標籤、祕密掃描、語義化 PR、pre-commit 自動更新
+    - pre-commit 同時掛載多個 git 階段（pre-commit、post-checkout、post-merge、post-rewrite）
+    - i18n 友善檢查（允許中文標點等 confusables）
+    - 文件列出可替代的環境管理（Rye、Conda）
+    - 相容舊式流程：可用 `uv pip` 匯出 `requirements.txt`
 
 ## 🚀 快速開始
 
-### 選項 1: 使用 GitHub 模板
+需求：
 
-1. 點擊 [<kbd>使用此模板</kbd>](https://github.com/Mai0313/repo_template/generate)
-2. 配置您的新儲存庫
-3. 複製並開始開發
+- Python 3.10–3.12
+- `uv`（可用 `make uv-install` 安裝）
+- pre-commit hooks：`uv tool install pre-commit` 或 `uv sync --group dev`
 
-### 選項 2: 手動設定
+本機安裝：
 
-1. 複製儲存庫
-2. 安裝依賴：
-    ```bash
-    make uv-install  # 如果尚未安裝 uv
-    uv sync          # 安裝專案依賴
-    ```
-3. 設定 pre-commit hooks：
-    ```bash
-    make format      # 執行 pre-commit hooks
-    ```
-
-### 選項 3: 快速自訂（推薦）
-
-1. 複製此儲存庫
-2. 全局替換 `repo_template` 為您的專案名稱（snake_case 格式）
-3. 全局替換 `RepoTemplate` 為您的專案標題（PascalCase 格式）
-4. 執行初始設定：
-    ```bash
-    make uv-install && uv sync && make format
-    ```
-
-## 📁 專案結構
-
-```
-├── .devcontainer/          # VS Code Dev Container 配置
-├── .github/
-│   ├── workflows/          # CI/CD 工作流程
-│   └── copilot-instructions.md
-├── docker/                 # Docker 配置
-├── docs/                   # MkDocs 文檔
-├── scripts/                # 自動化腳本
-├── src/
-│   └── repo_template/      # 主要套件
-├── tests/                  # 測試套件
-├── pyproject.toml          # 專案配置
-├── Makefile               # 開發命令
-└── README.md
+```bash
+make uv-install
+uv sync                     # 安裝基礎依賴
+uv tool install pre-commit  # 或：uv sync --group dev
+make format
+make test
 ```
 
-## 🛠️ 可用命令
+執行範例 CLI：
+
+```bash
+uv run repo_template
+```
+
+作為模板使用（推薦）：
+
+1. 點擊「使用此模板」建立新倉庫
+2. 全域替換名稱：
+
+```bash
+# 套件/模組名稱
+find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/repo_template/your_package_name/g'
+
+# 專案顯示標題
+find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/RepoTemplate/YourProjectTitle/g'
+```
+
+1. 更新 `pyproject.toml` 中的作者/描述等中繼資料
+
+## 🧰 指令一覽
 
 ```bash
 # 開發
-make clean          # 清理自動生成的檔案
-make format         # 執行 pre-commit hooks
-make test           # 執行所有測試
-make gen-docs       # 生成文檔
+make clean              # 清理快取、產物與產生的文件
+make format             # 執行所有 pre-commit hooks
+make test               # 執行 pytest
+make gen-docs           # 從 src/ 與 scripts/ 生成文件
 
-# 依賴管理
-make uv-install     # 安裝 uv 依賴管理器
-uv add <package>    # 添加生產依賴
-uv add <package> --dev  # 添加開發依賴
+# Git 子模組（如有使用）
+make submodule-init     # 初始化與更新所有子模組
+make submodule-update   # 更新所有子模組至遠端
+
+# 依賴管理（uv）
+make uv-install         # 安裝 uv
+uv add <pkg>            # 加入正式依賴
+uv add <pkg> --dev      # 加入開發依賴
+# 同步選用依賴群組
+uv sync --group dev     # 安裝開發用依賴（pre-commit、poe、notebook）
+uv sync --group test    # 安裝測試用依賴
+uv sync --group docs    # 安裝文件用依賴
 ```
 
-## 🎯 包含內容
+## 📚 文件系統
 
-### CI/CD 工作流程
-
-- **測試**: PR 上的多版本 Python 測試
-- **程式碼品質**: 自動化 ruff 檢查和 pre-commit 驗證
-- **文檔**: 自動 GitHub Pages 部署
-- **發布**: 自動發布草稿和變更日誌生成
-- **標籤**: 基於 PR 內容的自動標籤
-
-### 開發工具
-
-- **ruff**: 快速 Python 檢查器和格式化器
-- **pytest**: 帶覆蓋率的測試框架
-- **pre-commit**: 程式碼品質的 Git hooks
-- **MkDocs**: 文檔生成
-- **Docker**: 容器化開發和部署
-
-### 專案模板
-
-- **Python 套件**: 即用型套件結構
-- **配置檔案**: 包含所有必要的配置檔案
-- **文檔**: 完整的文檔設定
-- **測試**: 全面的測試配置
-
-## 🎨 自訂指南
-
-### 專案名稱自訂
-
-本模板設計為可透過簡單的全局替換快速自訂：
-
-1. **替換套件名稱**: 將所有 `repo_template` 替換為您的專案名稱（建議使用 snake_case）
-2. **替換專案標題**: 將所有 `RepoTemplate` 替換為您的專案標題（建議使用 PascalCase）
-3. **更新中繼資料**: 修改 `pyproject.toml` 中的作者、描述等資訊
-
-範例：
+- 使用 MkDocs Material
+- 生成與預覽：
 
 ```bash
-# 如果您的專案叫做 "awesome_project"
-find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/repo_template/awesome_project/g'
-find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/RepoTemplate/AwesomeProject/g'
+uv sync --group docs
+make gen-docs
+uv run mkdocs serve    # http://localhost:9987
+```
+
+- 自動生成腳本：`scripts/gen_docs.py`（支援 .py 與 .ipynb）
+
+```bash
+# 以 class 為單位（預設）
+uv run python ./scripts/gen_docs.py --source ./src --output ./docs/Reference gen_docs
+
+# 以檔案為單位
+uv run python ./scripts/gen_docs.py --source ./src --output ./docs/Reference --mode file gen_docs
+```
+
+## 🐳 Docker 與本機服務
+
+`docker-compose.yaml` 內提供本機開發常見服務：`redis`、`postgresql`、`mongodb`、`mysql`，以及示範 `app` 服務（執行 CLI）。
+
+建立 `.env` 設定連線參數（預設如下）：
+
+```bash
+REDIS_PORT=6379
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_PORT=5432
+MONGO_PORT=27017
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=mysql
+MYSQL_USER=mysql
+MYSQL_PASSWORD=mysql
+MYSQL_PORT=3306
+```
+
+啟動服務：
+
+```bash
+docker compose up -d redis postgresql mongodb mysql
+
+# 或啟動示範 app
+docker compose up -d app
+```
+
+## 📦 打包與發佈
+
+以 uv 產出套件（wheel/sdist 會放在 `dist/`）：
+
+```bash
+uv build
+```
+
+發佈到 PyPI（需設定 `UV_PUBLISH_TOKEN`）：
+
+```bash
+UV_PUBLISH_TOKEN=... uv publish
+```
+
+CI 亦會在建立 `v*` 標籤時自動打包並上傳產物。若要自動發布到 PyPI，請在 `build_package.yml` 取消註解 publish 步驟並設定 secret。
+
+### 在本機與 PyPI 執行你的 CLI
+
+- 本機（來源碼倉）：
+
+```bash
+uv run repo_template
+uv run cli
+```
+
+- 發佈到 PyPI 後，透過 `uvx`（臨時安裝後執行）：
+
+```bash
+# 若 console script 名稱為 "repo_template"
+uvx repo_template
+
+# 或指定套件/版本與入口名稱
+uvx --from your-package-name==0.1.0 your-entrypoint
+```
+
+## 🧭 選用任務管理（Poe the Poet）
+
+`pyproject.toml` 中的 `[tool.poe.tasks]` 定義了便捷任務，安裝 dev 群組（`uv sync --group dev`）或使用 `uvx` 後可用：
+
+```bash
+uv run poe docs        # 生成 + 啟動文件預覽（需 dev 群組）
+uv run poe gen         # 生成 + 發佈文件（gh-deploy）（需 dev 群組）
+uv run poe main        # 執行 CLI（等同 uv run repo_template）
+
+# 或使用 uvx（臨時環境，無需本地安裝）
+uvx poe docs
+```
+
+## 🔁 CI/CD 工作流程總覽
+
+所有流程位於 `.github/workflows/`，以下為觸發時機與用途：
+
+- Tests（`test.yml`）
+
+    - 觸發：對 `master`、`release/*` 的 PR
+    - 執行 pytest（3.10/3.11/3.12）並留下覆蓋率摘要
+
+- Code Quality（`code-quality-check.yml`）
+
+    - 觸發：PR
+    - 執行 ruff 與其它 pre-commit hooks
+
+- Docs Deploy（`deploy.yml`）
+
+    - 觸發：推送到 `master` 與 `v*` 標籤
+    - 建置並發布 MkDocs 網站到 GitHub Pages
+    - 需在 GitHub 啟用 Pages（Actions → Pages）
+
+- Build Package（`build_package.yml`）
+
+    - 觸發：`v*` 標籤
+    - 以 `uv build` 打包並上傳產物，並更新變更日誌
+    - 發布到 PyPI：取消註解 `uv publish` 並新增 `UV_PUBLISH_TOKEN` secret
+
+- Publish Docker Image（`build_image.yml`）
+
+    - 觸發：推送到 `master` 與 `v*` 標籤
+    - 發佈至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 內有 `prod` target）
+
+- Build Executable（`build_executable.yml`）
+
+    - 觸發：`v*` 標籤（Windows runner）
+    - 範例流程（目前示範，請自行加入打包步驟）
+
+- Release Drafter（`release_drafter.yml`）
+
+    - 觸發：推送到 `main`/`master` 與 PR 事件
+    - 基於 Conventional Commits 維護草稿發佈
+
+- PR Labeler（`auto_labeler.yml`）
+
+    - 觸發：PR 與 Push
+    - 依 `.github/labeler.yml` 自動加標籤
+
+- Secret Scanning（`secret_scan.yml`）
+
+    - 觸發：Push 與 PR
+    - 使用 gitleaks 掃描機密
+
+- Semantic Pull Request（`semantic-pull-request.yml`）
+
+    - 觸發：PR 開啟/更新
+    - 強制 PR 標題符合 Conventional Commits
+
+### CI/CD 設定清單
+
+- PR 標題遵循 Conventional Commits
+- （選用）發佈到 PyPI：新增 `UV_PUBLISH_TOKEN` secret
+- （選用）啟用 GitHub Pages 以發布文件
+
+## 🧩 範例 CLI
+
+`pyproject.toml` 內提供 `repo_template` 與 `cli` 兩個入口點。目前示範回傳簡單 `Response` 模型，可依需求替換。
+
+```bash
+uv run repo_template
 ```
 
 ## 🤝 貢獻
 
-我們歡迎貢獻！請隨時：
-
-- 開啟問題回報錯誤或功能請求
-- 提交拉取請求進行改進
-- 分享您使用此模板的經驗
-
-## 📖 文檔
-
-詳細文檔請訪問：[https://mai0313.github.io/repo_template/](https://mai0313.github.io/repo_template/)
-
-## 👥 貢獻者
-
-[![Contributors](https://contrib.rocks/image?repo=Mai0313/repo_template)](https://github.com/Mai0313/repo_template/graphs/contributors)
-
-Made with [contrib.rocks](https://contrib.rocks)
+- 歡迎 Issue/PR
+- 請遵循程式風格（ruff、型別）
+- PR 標題遵循 Conventional Commits
 
 ## 📄 授權
 
-本專案採用 MIT 授權 - 詳見 [LICENSE](LICENSE) 檔案。
+MIT — 詳見 `LICENSE`。
