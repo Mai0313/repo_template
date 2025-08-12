@@ -16,7 +16,7 @@
 
 🚀 **一個完整的 Python 專案模板，幫助開發者快速啟動專案，內含完整的 CI/CD 流水線和現代化工具**
 
-點擊 [<kbd>使用此模板</kbd>](https://github.com/Mai0313/repo_template/generate) 來建立新的儲存庫，或使用我們的初始化腳本進行個人化設定。
+點擊 [<kbd>使用此模板</kbd>](https://github.com/Mai0313/repo_template/generate) 來建立新的儲存庫。
 
 **其他語言版本**: [English](README.md) | [中文](README_cn.md)
 
@@ -60,7 +60,6 @@
 
 ### 🤖 **自動化腳本**
 
-- **專案初始化**: `scripts/initpyrepo.go` 用於建立個人化專案
 - **文檔生成**: `scripts/gen_docs.py` 用於自動生成文檔
 - **Makefile 命令**: 常見開發任務自動化
 
@@ -72,16 +71,7 @@
 2. 配置您的新儲存庫
 3. 複製並開始開發
 
-### 選項 2: 使用初始化腳本
-
-1. 複製此儲存庫
-2. 執行初始化腳本：
-    ```bash
-    go run scripts/initpyrepo.go
-    ```
-3. 依照提示自訂您的專案
-
-### 選項 3: 手動設定
+### 選項 2: 手動設定
 
 1. 複製儲存庫
 2. 安裝依賴：
@@ -94,7 +84,7 @@
     make format      # 執行 pre-commit hooks
     ```
 
-### 選項 4: 快速自訂（推薦）
+### 選項 3: 快速自訂（推薦）
 
 1. 複製此儲存庫
 2. 全局替換 `repo_template` 為您的專案名稱（snake_case 格式）

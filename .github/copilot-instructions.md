@@ -49,3 +49,8 @@ Everything in this file SHOULD BE MODIFIED to reflect the current state of the p
     - Development:
         - Add Dependencies: `uv add <package> --dev`
         - Remove Dependencies: `uv remove <package> --dev`
+
+# Scripts
+
+- Documentation generation: `scripts/gen_docs.py`
+- The Go-based project initialization script (`scripts/initpyrepo.go`) has been removed. Use the Manual Setup or Quick Customization steps in `README.md` instead.

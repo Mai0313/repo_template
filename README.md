@@ -16,7 +16,7 @@
 
 🚀 **A comprehensive Python project template to kickstart your development with complete CI/CD pipelines and modern tooling**
 
-Click on [<kbd>Use this template</kbd>](https://github.com/Mai0313/repo_template/generate) to initialize a new repository, or use our initialization script for a personalized setup.
+Click on [<kbd>Use this template</kbd>](https://github.com/Mai0313/repo_template/generate) to initialize a new repository.
 
 **Other Languages**: [English](README.md) | [中文](README_cn.md)
 
@@ -60,7 +60,6 @@ Click on [<kbd>Use this template</kbd>](https://github.com/Mai0313/repo_template
 
 ### 🤖 **Automation Scripts**
 
-- **Project initialization**: `scripts/initpyrepo.go` for creating personalized projects
 - **Documentation generation**: `scripts/gen_docs.py` for auto-generating documentation
 - **Makefile commands**: Common development tasks automated
 
@@ -72,16 +71,7 @@ Click on [<kbd>Use this template</kbd>](https://github.com/Mai0313/repo_template
 2. Configure your new repository
 3. Clone and start developing
 
-### Option 2: Use Initialization Script
-
-1. Clone this repository
-2. Run the initialization script:
-    ```bash
-    go run scripts/initpyrepo.go
-    ```
-3. Follow the prompts to customize your project
-
-### Option 3: Manual Setup
+### Option 2: Manual Setup
 
 1. Clone the repository
 2. Install dependencies:
@@ -94,7 +84,7 @@ Click on [<kbd>Use this template</kbd>](https://github.com/Mai0313/repo_template
     make format      # Run pre-commit hooks
     ```
 
-### Option 4: Quick Customization (Recommended)
+### Option 3: Quick Customization (Recommended)
 
 1. Clone this repository
 2. Globally replace `repo_template` with your project name (snake_case format)
