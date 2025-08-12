@@ -73,6 +73,16 @@ jobs:
       #       echo "version=latest" >> $GITHUB_OUTPUT
       #     fi
 
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff
+        env:
+          OUTPUT: CHANGELOG.md
+        with:
+          config: pyproject.toml
+          args: --unreleased --tag ${{ steps.version.outputs.version }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Package
         run: |
           uv build
@@ -83,16 +93,6 @@ jobs:
       #     UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}
       #   run: |
       #     uv publish
-
-      - name: Generate a changelog
-        uses: orhun/git-cliff-action@v4
-        id: git-cliff
-        env:
-          OUTPUT: CHANGELOG.md
-        with:
-          config: pyproject.toml
-          args: --unreleased --tag ${{ steps.version.outputs.version }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.6.2
