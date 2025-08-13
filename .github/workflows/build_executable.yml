@@ -113,3 +113,10 @@ jobs:
         with:
           files: |
             ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
+
+      # - name: Update Assets
+      #   uses: akkuman/gitea-release-action@v1
+      #   with:
+      #     tag_name: ${{ steps.version.outputs.version }}
+      #     files: |-
+      #       ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
