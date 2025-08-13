@@ -74,17 +74,13 @@ readme = "README.md"
 requires-python = ">= 3.10"
 license = { text = "MIT" }
 
-[project.scripts]
-cli = "repo_template.cli:main"
-repo_template = "repo_template.cli:main"
-
 [project.urls]
 Homepage = "https://github.com/Mai0313/repo_template"
 Repository = "https://github.com/Mai0313/repo_template"
 
-[build-system]
-requires = ["hatchling", "hatch-fancy-pypi-readme"]
-build-backend = "hatchling.build"
+[project.scripts]
+cli = "repo_template.cli:main"
+repo_template = "repo_template.cli:main"
 
 [dependency-groups]
 dev = [
@@ -114,6 +110,10 @@ docs = [
     "ruff",
     "tabulate",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.hatch.metadata]
 allow-direct-references = true
@@ -160,12 +160,6 @@ exclude = [
     "/.docker-compose",
     "/.cache",
 ]
-
-[tool.hatch.metadata.hooks.fancy-pypi-readme]
-content-type = "text/markdown"
-
-[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
-path = "README.md"
 
 [tool.poe.tasks]
 api = "python ./src/repo_template/cli.py"
