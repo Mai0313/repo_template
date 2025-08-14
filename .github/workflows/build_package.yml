@@ -76,11 +76,9 @@ jobs:
       - name: Generate a changelog
         uses: orhun/git-cliff-action@v4
         id: git-cliff
-        env:
-          OUTPUT: CHANGELOG.md
         with:
           config: pyproject.toml
-          args: --unreleased --tag ${{ steps.version.outputs.version }}
+          args: --unreleased --tag ${{ steps.version.outputs.version }} --output CHANGELOG.md
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Package
