@@ -44,7 +44,6 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          base: master  # push to this branch
           branch: chore/pre-commit-hooks  # push from this branch
           title: "chore: Update pre-commit hooks"
           body: "Update versions of pre-commit hooks to latest version."
