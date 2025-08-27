@@ -99,7 +99,7 @@ jobs:
         with:
           scan-type: fs
           ignore-unfixed: true
-          format: 'table'
+          format: table
           exit-code: 1
           severity: HIGH,CRITICAL
           skip-setup-trivy: true
