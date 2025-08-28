@@ -66,7 +66,7 @@ jobs:
           fi
 
       - name: Run pytest
-        if: steps.check_tests.outputs.has_tests == 'true'
+        if: ${{ steps.check_tests.outputs.has_tests == 'true' }}
         run: |
           uv run pytest -vv
 
