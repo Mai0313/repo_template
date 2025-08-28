@@ -77,11 +77,6 @@ jobs:
           compression-level: 6
           overwrite: true
 
-      - name: List files
-        shell: pwsh
-        run: |
-          Get-ChildItem -Path .
-
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
@@ -95,16 +90,15 @@ jobs:
           ls -Force
 
       - name: Upload Release Assets
+        if: ${{ contains(github.server_url, 'github') }}
         uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: |
+          files: |-
             ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
 
-      # - name: Update Assets
-      #   uses: akkuman/gitea-release-action@v1
-      #   with:
-      #     tag_name: ${{ steps.version.outputs.version }}
-      #     files: |-
-      #       ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
+      - name: Upload Release Assets
+        if: ${{ contains(github.server_url, 'gitea') }}
+        uses: akkuman/gitea-release-action@v1
+        with:
+          files: |-
+            ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
