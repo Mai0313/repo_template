@@ -18,7 +18,7 @@
 
 Click [Use this template](https://github.com/Mai0313/repo_template/generate) to start a new repository from this scaffold.
 
-Other Languages: [English](README.md) | [中文](README_cn.md)
+Other Languages: [English](README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
 ## ✨ Highlights
 

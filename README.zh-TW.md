@@ -18,7 +18,7 @@
 
 點擊 [使用此模板](https://github.com/Mai0313/repo_template/generate) 後即可開始。
 
-其他語言: [English](README.md) | [中文](README_cn.md)
+其他語言: [English](README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
 ## ✨ 重點特色
 

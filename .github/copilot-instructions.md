@@ -109,7 +109,7 @@ All workflows live in `.github/workflows/`:
 
 - Conventional Commit PR titles (enforced by workflow)
 - Prefer small, focused PRs with tests and docs
-- Update this file plus `README.md` and `README_cn.md` when workflows, commands, or usage changes
+- Update this file plus `README.md`, `README.zh-TW.md`, and `README.zh-CN.md` when workflows, commands, or usage changes
 
 ### Running from PyPI via uvx
 
