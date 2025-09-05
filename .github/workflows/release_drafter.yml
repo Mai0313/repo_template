@@ -33,11 +33,10 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: release-drafter/release-drafter@v6
-        id: drafter
+      - name: Release Drafter
+        uses: release-drafter/release-drafter@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          config-name: release-drafter.yml
           publish: false
-          disable-autolabeler: false
+          config-name: release-drafter.yml

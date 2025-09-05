@@ -61,7 +61,7 @@ jobs:
         shell: bash
         run: |
           VERSION=$(uvx dunamai from git --bump --no-metadata --style pep440)
-          uv version $VERSION
+          uv version $VERSION --frozen
           echo "VERSION=$VERSION" >> $GITHUB_ENV
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
