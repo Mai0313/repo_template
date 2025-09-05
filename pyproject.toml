@@ -8,9 +8,8 @@ addopts = [
     "--quiet",
     "--cov=src",
     "--cov-report=term-missing:skip-covered",
-    "--junitxml=./.github/reports/pytest.xml",
     "--cov-report=xml:./.github/reports/coverage.xml",
-    "--cov-report=html:./.github/coverage_html_report",
+    "--junitxml=./.github/reports/.coverage.pytest.xml",
     "--cache-clear",
     "-n=auto",
     "--no-header",
@@ -226,18 +225,12 @@ show-fixes = true
 
 # In addition to the standard set of exclusions, omit all tests, plus a specific file.
 extend-exclude = [
-    ".venv",
     "logs",
     "data",
-    ".git",
     "*.svg",
     "*.sql",
-    ".cache",
     "__init__.py",
-    "__pycache__",
-    ".mypy_cache",
     ".ruff_cache",
-    "__pypackages__",
 ]
 
 # In addition to the standard set of inclusions, include `.pyw` files.
