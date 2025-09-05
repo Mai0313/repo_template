@@ -1,4 +1,4 @@
-from src.repo_template.cli import main
+from repo_template.cli import main
 
 
 def test_main():
