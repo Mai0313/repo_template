@@ -230,7 +230,6 @@ extend-exclude = [
     "*.svg",
     "*.sql",
     "__init__.py",
-    ".ruff_cache",
 ]
 
 # In addition to the standard set of inclusions, include `.pyw` files.
