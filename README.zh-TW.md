@@ -84,6 +84,7 @@ find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/
 
 ```bash
 # 開發
+make help               # 顯示 Makefile 指令列表
 make clean              # 清理快取、產物與產生的文件
 make format             # 執行所有 pre-commit hooks
 make test               # 執行 pytest

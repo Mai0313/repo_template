@@ -84,6 +84,7 @@ find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/
 
 ```bash
 # Development
+make help               # List available make targets
 make clean              # Clean caches, artifacts and generated docs
 make format             # Run all pre-commit hooks
 make test               # Run pytest across the repository
