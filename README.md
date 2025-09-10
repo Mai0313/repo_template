@@ -32,7 +32,7 @@ Other Languages: [English](README.md) | [繁體中文](README.zh-TW.md) | [简�
 - Dev server at `0.0.0.0:9987`; bilingual docs scaffolded
 - Docs generator script: by class/file, optional notebook execution, concurrency, preserves folder structure
 - Async file processing via anyio and rich progress bars
-- Packaging with `uv build`, fancy PyPI README (hatch‑fancy‑pypi‑readme), changelog via git‑cliff
+- Packaging with `uv build` and changelog via `git-cliff`
 - Automatic PEP 440 versioning from git via `dunamai` in CI
 - Dockerfile multi‑stage with uv/uvx and Node.js; Compose services (Redis/Postgres/Mongo/MySQL) with healthchecks and volumes
 - GitHub Actions: tests, quality, docs deploy, package build, docker image publish (GHCR with buildx cache), release drafter, auto labeler, secret scan, semantic PR, pre‑commit auto‑update
@@ -45,7 +45,7 @@ Other Languages: [English](README.md) | [繁體中文](README.zh-TW.md) | [简�
 
 Prerequisites:
 
-- Python 3.10–3.12
+- Python 3.10–3.13
 - `uv` (install with `make uv-install`)
 - Pre-commit hooks: either `uv tool install pre-commit` or `uv sync --group dev`
 
@@ -208,7 +208,7 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 - Tests (`test.yml`)
 
     - Trigger: Pull requests to `master` or `release/*` (ignores md files)
-    - Runs pytest on Python 3.10/3.11/3.12 with coverage and comments a summary
+    - Runs pytest on Python 3.10/3.11/3.12/3.13 with coverage and comments a summary
     - Setup needed: none
 
 - Code Quality Check (`code-quality-check.yml`)
