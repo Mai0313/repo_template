@@ -32,7 +32,7 @@
     - 开发服务器 `0.0.0.0:9987`；双语文档脚手架
 - 文档生成脚本：支持 class/文件两种模式、可选执行 notebook、可并发、保留目录结构
     - 使用 anyio 异步处理与 rich 进度条
-- 打包：`uv build`、PyPI README（hatch-fancy-pypi-readme）、git-cliff 产 changelog
+- 打包：`uv build`、git-cliff 产 changelog
 - CI 自动版本：以 `dunamai` 从 git 产 PEP 440 版本
 - Dockerfile 多阶段（内含 uv/uvx 与 Node.js）；Compose 服务（Redis/Postgres/Mongo/MySQL）含 healthcheck 与 volume
 - GitHub Actions：测试、质量、文档部署、包打包、Docker 推送（GHCR + buildx cache）、Release Drafter、自动标签、秘密扫描、语义化 PR、pre-commit 自动更新
@@ -45,7 +45,7 @@
 
 需求：
 
-- Python 3.10–3.12
+- Python 3.10–3.13
 - `uv`（可用 `make uv-install` 安装）
 - pre-commit hooks：`uv tool install pre-commit` 或 `uv sync --group dev`
 
@@ -84,6 +84,7 @@ find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/
 
 ```bash
 # 开发
+make help               # 显示 Makefile 命令列表
 make clean              # 清理缓存、产物与产生的文档
 make format             # 执行所有 pre-commit hooks
 make test               # 执行 pytest
@@ -208,7 +209,7 @@ uvx poe docs
 - Tests（`test.yml`）
 
     - 触发：对 `master`、`release/*` 的 PR
-    - 执行 pytest（3.10/3.11/3.12）并留下覆盖率摘要
+    - 执行 pytest（3.10/3.11/3.12/3.13）并留下覆盖率摘要
 
 - Code Quality（`code-quality-check.yml`）
 
