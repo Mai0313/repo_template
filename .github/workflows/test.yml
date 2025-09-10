@@ -86,3 +86,19 @@ jobs:
           pytest-coverage-path: ./.coverage.txt
           junitxml-path: ./.github/reports/.coverage.pytest.xml
           pytest-xml-coverage-path: ./.github/reports/coverage.xml
+
+      - name: Generate coverage badge
+        if: ${{ steps.check_tests.outputs.has_tests == 'true' }}
+        run: |
+          uv run genbadge coverage -i .github/reports/coverage.xml -o coverage.svg
+
+      - name: Upload coverage badge
+        if: ${{ steps.check_tests.outputs.has_tests == 'true' && github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') }}
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          tag: coverage
+          name: coverage
+          body: "Automated coverage badge update"
+          artifacts: coverage.svg
+          artifactContentType: image/svg+xml
