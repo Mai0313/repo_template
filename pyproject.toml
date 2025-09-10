@@ -466,7 +466,7 @@ data_dir = "./.cache/.logfire"
 # base_url = ""
 collect_system_metrics = false
 id_generator = true
-fast_shutdown=true
+fast_shutdown = true
 
 
 # ================== #
