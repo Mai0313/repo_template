@@ -32,11 +32,6 @@ jobs:
             target_step: prod
             tag: ghcr.io/${{ github.repository }}
 
-    env:
-      BUILDKIT_NO_CLIENT_TOKEN: 1 # docker buildkit env
-      # gitea action download node.js skip certificate !https
-      NODE_TLS_REJECT_UNAUTHORIZED: 0
-
     steps:
       - name: Disable SSL Verify
         run: git config --global http.sslVerify false
@@ -45,7 +40,7 @@ jobs:
       #   uses: https://gitea.mediatek.inc/actions/mtk-cert-action@v1.2.0
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
