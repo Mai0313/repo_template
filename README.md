@@ -9,7 +9,7 @@
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://docs.pydantic.dev/latest/contributing/#badges)
 [![tests](https://github.com/Mai0313/repo_template/actions/workflows/test.yml/badge.svg)](https://github.com/Mai0313/repo_template/actions/workflows/test.yml)
 [![code-quality](https://github.com/Mai0313/repo_template/actions/workflows/code-quality-check.yml/badge.svg)](https://github.com/Mai0313/repo_template/actions/workflows/code-quality-check.yml)
-[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/Mai0313/repo_template/tree/master?tab=License-1-ov-file)
+[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/Mai0313/repo_template/tree/main?tab=License-1-ov-file)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Mai0313/repo_template/pulls)
 [![contributors](https://img.shields.io/github/contributors/Mai0313/repo_template.svg)](https://github.com/Mai0313/repo_template/graphs/contributors)
 
@@ -209,7 +209,7 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 
 - Tests (`test.yml`)
 
-    - Trigger: Pull requests to `master` or `release/*` (ignores md files)
+    - Trigger: Pull requests to `main` or `release/*` (ignores md files)
     - Runs pytest on Python 3.10/3.11/3.12/3.13 with coverage and comments a summary
     - Setup needed: none
 
@@ -221,7 +221,7 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 
 - Docs Deploy (`deploy.yml`)
 
-    - Trigger: Push to `master` and tags `v*`
+    - Trigger: Push to `main` and tags `v*`
     - Builds `mkdocs` site and publishes to GitHub Pages
     - Setup needed:
         - Enable GitHub Pages for the repo (Actions → Pages)
@@ -235,7 +235,7 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 
 - Publish Docker Image (`build_image.yml`)
 
-    - Trigger: Push to `master` and tags `v*`
+    - Trigger: Push to `main` and tags `v*`
     - Builds and pushes a Docker image to GHCR: `ghcr.io/<owner>/<repo>`
     - Setup needed: none (uses `GITHUB_TOKEN`); ensure `docker/Dockerfile` defines `prod` target
 
@@ -247,7 +247,7 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 
 - Release Drafter (`release_drafter.yml`)
 
-    - Trigger: Push to `main`/`master` and PR events
+    - Trigger: Push to `main` and PR events
     - Maintains a draft release based on Conventional Commits
 
 - Pull Request Labeler (`auto_labeler.yml`)

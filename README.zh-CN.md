@@ -9,7 +9,7 @@
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://docs.pydantic.dev/latest/contributing/#badges)
 [![tests](https://github.com/Mai0313/repo_template/actions/workflows/test.yml/badge.svg)](https://github.com/Mai0313/repo_template/actions/workflows/test.yml)
 [![code-quality](https://github.com/Mai0313/repo_template/actions/workflows/code-quality-check.yml/badge.svg)](https://github.com/Mai0313/repo_template/actions/workflows/code-quality-check.yml)
-[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/Mai0313/repo_template/tree/master?tab=License-1-ov-file)
+[![license](https://img.shields.io/badge/License-MIT-green.svg?labelColor=gray)](https://github.com/Mai0313/repo_template/tree/main?tab=License-1-ov-file)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Mai0313/repo_template/pulls)
 [![contributors](https://img.shields.io/github/contributors/Mai0313/repo_template.svg)](https://github.com/Mai0313/repo_template/graphs/contributors)
 
@@ -209,7 +209,7 @@ uvx poe docs
 
 - Tests（`test.yml`）
 
-    - 触发：对 `master`、`release/*` 的 PR
+    - 触发：对 `main`、`release/*` 的 PR
     - 执行 pytest（3.10/3.11/3.12/3.13）并留下覆盖率摘要
 
 - Code Quality（`code-quality-check.yml`）
@@ -219,7 +219,7 @@ uvx poe docs
 
 - Docs Deploy（`deploy.yml`）
 
-    - 触发：推送到 `master` 与 `v*` 标签
+    - 触发：推送到 `main` 与 `v*` 标签
     - 构建并发布 MkDocs 网站到 GitHub Pages
     - 需在 GitHub 启用 Pages（Actions → Pages）
 
@@ -231,7 +231,7 @@ uvx poe docs
 
 - Publish Docker Image（`build_image.yml`）
 
-    - 触发：推送到 `master` 与 `v*` 标签
+    - 触发：推送到 `main` 与 `v*` 标签
     - 发布至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 内有 `prod` target）
 
 - Build Executable（`build_executable.yml`）
@@ -241,7 +241,7 @@ uvx poe docs
 
 - Release Drafter（`release_drafter.yml`）
 
-    - 触发：推送到 `main`/`master` 与 PR 事件
+    - 触发：推送到 `main` 与 PR 事件
     - 基于 Conventional Commits 维护草稿发布
 
 - PR Labeler（`auto_labeler.yml`）

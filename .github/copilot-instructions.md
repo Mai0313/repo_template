@@ -94,11 +94,11 @@ uv run python ./scripts/gen_docs.py --source ./src --output ./docs/Reference --m
 
 All workflows live in `.github/workflows/`:
 
-- `test.yml`: Run pytest on PRs to `master`/`release/*` (3.10/3.11/3.12)
+- `test.yml`: Run pytest on PRs to `main`/`release/*` (3.10/3.11/3.12)
 - `code-quality-check.yml`: Run pre-commit hooks on PRs
-- `deploy.yml`: Build and publish MkDocs site on pushes to `master` and tags `v*`
+- `deploy.yml`: Build and publish MkDocs site on pushes to `main` and tags `v*`
 - `build_package.yml`: Build wheel/sdist on tags `v*`, upload artifacts, generate changelog; optional PyPI publish with `UV_PUBLISH_TOKEN`
-- `build_image.yml`: Build and push Docker image to GHCR on `master` and tags `v*`
+- `build_image.yml`: Build and push Docker image to GHCR on `main` and tags `v*`
 - `build_executable.yml`: Example Windows packaging flow on tags `v*` (stub)
 - `release_drafter.yml`: Maintain a draft release using Conventional Commits
 - `auto_labeler.yml`: Auto-apply labels based on `.github/labeler.yml`
