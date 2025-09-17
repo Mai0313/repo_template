@@ -59,7 +59,6 @@ jobs:
       #     uv publish
 
       - name: Upload Artifact
-        if: ${{ contains(github.server_url, 'github') }}
         uses: actions/upload-artifact@v4.6.2
         with:
           path: ./dist/*
@@ -70,26 +69,7 @@ jobs:
           overwrite: true
 
       - name: Upload Release Assets
-        if: ${{ contains(github.server_url, 'github') }}
         uses: softprops/action-gh-release@v2.3.3
         with:
-          files: |-
-            ./dist/*
-
-      - name: Upload Artifact
-        if: ${{ contains(github.server_url, 'gitea') }}
-        uses: christopherhx/gitea-upload-artifact@v4
-        with:
-          path: ./dist/*
-          name: ${{ github.event.repository.name }}
-          if-no-files-found: ignore
-          retention-days: 7
-          compression-level: 6
-          overwrite: true
-
-      - name: Upload Release Assets
-        if: ${{ contains(github.server_url, 'gitea') }}
-        uses: akkuman/gitea-release-action@v1
-        with:
-          files: |-
+          files: |
             ./dist/*
