@@ -73,9 +73,12 @@ repos:
           - mdformat-config
           - mdformat-tables
           - mdformat-footnote
-          - mdformat_frontmatter
+          - mdformat-wikilink
+          - mdformat-beautysh
           - mdformat-pyproject
-          - mdformat-mkdocs[recommended]
+          # - mdformat_frontmatter
+          - mdformat-simple-breaks
+          - setuptools<80
 
   # jupyter notebook cell output clearing
   - repo: https://github.com/kynan/nbstripout
