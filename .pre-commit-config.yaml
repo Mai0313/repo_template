@@ -76,7 +76,7 @@ repos:
           - mdformat-wikilink
           - mdformat-beautysh
           - mdformat-pyproject
-          # - mdformat_frontmatter
+          - mdformat_frontmatter
           - mdformat-simple-breaks
           - setuptools<80
 
