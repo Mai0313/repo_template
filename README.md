@@ -209,61 +209,61 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 
 - Tests (`test.yml`)
 
-    - Trigger: Pull requests to `main` or `release/*` (ignores md files)
-    - Runs pytest on Python 3.10/3.11/3.12/3.13 with coverage and comments a summary
-    - Setup needed: none
+  - Trigger: Pull requests to `main` or `release/*` (ignores md files)
+  - Runs pytest on Python 3.10/3.11/3.12/3.13 with coverage and comments a summary
+  - Setup needed: none
 
 - Code Quality Check (`code-quality-check.yml`)
 
-    - Trigger: Pull requests
-    - Runs ruff and other pre-commit hooks
-    - Setup needed: none
+  - Trigger: Pull requests
+  - Runs ruff and other pre-commit hooks
+  - Setup needed: none
 
 - Docs Deploy (`deploy.yml`)
 
-    - Trigger: Push to `main` and tags `v*`
-    - Builds `mkdocs` site and publishes to GitHub Pages
-    - Setup needed:
-        - Enable GitHub Pages for the repo (Actions → Pages)
-        - The workflow configures and uploads the site automatically
+  - Trigger: Push to `main` and tags `v*`
+  - Builds `mkdocs` site and publishes to GitHub Pages
+  - Setup needed:
+    - Enable GitHub Pages for the repo (Actions → Pages)
+    - The workflow configures and uploads the site automatically
 
 - Build Package (`build_package.yml`)
 
-    - Trigger: Tags `v*`
-    - Builds wheel/sdist via `uv build` and uploads artifacts; updates changelog
-    - Optional publish: uncomment the `uv publish` step and add secret `UV_PUBLISH_TOKEN`
+  - Trigger: Tags `v*`
+  - Builds wheel/sdist via `uv build` and uploads artifacts; updates changelog
+  - Optional publish: uncomment the `uv publish` step and add secret `UV_PUBLISH_TOKEN`
 
 - Publish Docker Image (`build_image.yml`)
 
-    - Trigger: Push to `main` and tags `v*`
-    - Builds and pushes a Docker image to GHCR: `ghcr.io/<owner>/<repo>`
-    - Setup needed: none (uses `GITHUB_TOKEN`); ensure `docker/Dockerfile` defines `prod` target
+  - Trigger: Push to `main` and tags `v*`
+  - Builds and pushes a Docker image to GHCR: `ghcr.io/<owner>/<repo>`
+  - Setup needed: none (uses `GITHUB_TOKEN`); ensure `docker/Dockerfile` defines `prod` target
 
 - Build Executable (`build_executable.yml`)
 
-    - Trigger: Tags `v*` (Windows runner)
-    - Currently stubs out packaging (example commented). Uploads a zip artifact
-    - To ship a real executable, add your PyInstaller (or similar) steps
+  - Trigger: Tags `v*` (Windows runner)
+  - Currently stubs out packaging (example commented). Uploads a zip artifact
+  - To ship a real executable, add your PyInstaller (or similar) steps
 
 - Release Drafter (`release_drafter.yml`)
 
-    - Trigger: Push to `main` and PR events
-    - Maintains a draft release based on Conventional Commits
+  - Trigger: Push to `main` and PR events
+  - Maintains a draft release based on Conventional Commits
 
 - Pull Request Labeler (`auto_labeler.yml`)
 
-    - Trigger: PRs and pushes
-    - Auto-applies labels defined in `.github/labeler.yml`
+  - Trigger: PRs and pushes
+  - Auto-applies labels defined in `.github/labeler.yml`
 
 - Secret Scanning (`secret_scan.yml`)
 
-    - Trigger: Push and PR
-    - Runs gitleaks to detect leaked secrets
+  - Trigger: Push and PR
+  - Runs gitleaks to detect leaked secrets
 
 - Semantic Pull Request (`semantic-pull-request.yml`)
 
-    - Trigger: PR open/edit/sync
-    - Enforces Conventional Commit style PR titles
+  - Trigger: PR open/edit/sync
+  - Enforces Conventional Commit style PR titles
 
 ### CI/CD Configuration Checklist
 

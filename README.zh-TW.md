@@ -28,19 +28,19 @@
 - pre-commit 套件鏈：ruff、mdformat（含多插件）、codespell、nbstripout、mypy、uv hooks
 - 型別嚴謹：mypy + Pydantic 外掛設定
 - pytest + coverage + xdist；PR 覆蓋率摘要留言
-    - 覆蓋率門檻 80%，HTML/XML 報告輸出至 `.github/`
+  - 覆蓋率門檻 80%，HTML/XML 報告輸出至 `.github/`
 - MkDocs Material + mkdocstrings（繼承圖）、markdown-exec、MathJax
-    - 開發伺服器 `0.0.0.0:9987`；雙語文件腳手架
+  - 開發伺服器 `0.0.0.0:9987`；雙語文件腳手架
 - 文件生成腳本：支援 class/檔案兩種模式、可選執行 notebook、可併發、保留目錄結構
-    - 使用 anyio 非同步處理與 rich 進度條
+  - 使用 anyio 非同步處理與 rich 進度條
 - 打包：`uv build`、git-cliff 產 changelog
 - CI 自動版本：以 `dunamai` 從 git 產 PEP 440 版本
 - Dockerfile 多階段（內含 uv/uvx 與 Node.js）；Compose 服務（Redis/Postgres/Mongo/MySQL）含 healthcheck 與 volume
 - GitHub Actions：測試、品質、文件部署、套件打包、Docker 推送（GHCR + buildx cache）、Release Drafter、自動標籤、祕密掃描、語義化 PR、pre-commit 自動更新
-    - pre-commit 同時掛載多個 git 階段（pre-commit、post-checkout、post-merge、post-rewrite）
-    - i18n 友善檢查（允許中文標點等 confusables）
-    - 文件列出可替代的環境管理（Rye、Conda）
-    - 相容舊式流程：可用 `uv pip` 匯出 `requirements.txt`
+  - pre-commit 同時掛載多個 git 階段（pre-commit、post-checkout、post-merge、post-rewrite）
+  - i18n 友善檢查（允許中文標點等 confusables）
+  - 文件列出可替代的環境管理（Rye、Conda）
+  - 相容舊式流程：可用 `uv pip` 匯出 `requirements.txt`
 
 ## 🚀 快速開始
 
@@ -209,55 +209,55 @@ uvx poe docs
 
 - Tests（`test.yml`）
 
-    - 觸發：對 `main`、`release/*` 的 PR
-    - 執行 pytest（3.10/3.11/3.12/3.13）並留下覆蓋率摘要
+  - 觸發：對 `main`、`release/*` 的 PR
+  - 執行 pytest（3.10/3.11/3.12/3.13）並留下覆蓋率摘要
 
 - Code Quality（`code-quality-check.yml`）
 
-    - 觸發：PR
-    - 執行 ruff 與其它 pre-commit hooks
+  - 觸發：PR
+  - 執行 ruff 與其它 pre-commit hooks
 
 - Docs Deploy（`deploy.yml`）
 
-    - 觸發：推送到 `main` 與 `v*` 標籤
-    - 建置並發布 MkDocs 網站到 GitHub Pages
-    - 需在 GitHub 啟用 Pages（Actions → Pages）
+  - 觸發：推送到 `main` 與 `v*` 標籤
+  - 建置並發布 MkDocs 網站到 GitHub Pages
+  - 需在 GitHub 啟用 Pages（Actions → Pages）
 
 - Build Package（`build_package.yml`）
 
-    - 觸發：`v*` 標籤
-    - 以 `uv build` 打包並上傳產物，並更新變更日誌
-    - 發布到 PyPI：取消註解 `uv publish` 並新增 `UV_PUBLISH_TOKEN` secret
+  - 觸發：`v*` 標籤
+  - 以 `uv build` 打包並上傳產物，並更新變更日誌
+  - 發布到 PyPI：取消註解 `uv publish` 並新增 `UV_PUBLISH_TOKEN` secret
 
 - Publish Docker Image（`build_image.yml`）
 
-    - 觸發：推送到 `main` 與 `v*` 標籤
-    - 發佈至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 內有 `prod` target）
+  - 觸發：推送到 `main` 與 `v*` 標籤
+  - 發佈至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 內有 `prod` target）
 
 - Build Executable（`build_executable.yml`）
 
-    - 觸發：`v*` 標籤（Windows runner）
-    - 範例流程（目前示範，請自行加入打包步驟）
+  - 觸發：`v*` 標籤（Windows runner）
+  - 範例流程（目前示範，請自行加入打包步驟）
 
 - Release Drafter（`release_drafter.yml`）
 
-    - 觸發：推送到 `main` 與 PR 事件
-    - 基於 Conventional Commits 維護草稿發佈
+  - 觸發：推送到 `main` 與 PR 事件
+  - 基於 Conventional Commits 維護草稿發佈
 
 - PR Labeler（`auto_labeler.yml`）
 
-    - 觸發：PR 與 Push
-    - 依 `.github/labeler.yml` 自動加標籤
+  - 觸發：PR 與 Push
+  - 依 `.github/labeler.yml` 自動加標籤
 
 - Secret Scanning（`secret_scan.yml`）
 
-    - 觸發：Push 與 PR
-    - 使用 gitleaks 掃描機密
+  - 觸發：Push 與 PR
+  - 使用 gitleaks 掃描機密
 
 - Semantic Pull Request（`semantic-pull-request.yml`）
 
-    - 觸發：PR 開啟/更新
-    - 強制 PR 標題符合 Conventional Commits
+  - 觸發：PR 開啟/更新
+  - 強制 PR 標題符合 Conventional Commits
 
 ### CI/CD 設定清單
 
