@@ -47,6 +47,10 @@ jobs:
           config: ./.github/cliff.toml
           args: --bump --unreleased
 
+      - name: Check tag
+        run: |
+          echo '${{ steps.git-cliff-tag.outputs.content }}'
+
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         with:
