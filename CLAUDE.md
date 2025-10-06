@@ -14,6 +14,7 @@ This is a Python project template designed to bootstrap production-ready project
 ## Common Development Commands
 
 ### Environment Setup
+
 ```bash
 make uv-install           # Install uv (one-time setup)
 uv sync                   # Install base dependencies
@@ -23,6 +24,7 @@ uv sync --group dev       # Include dev tools (pre-commit, poe, notebook)
 ```
 
 ### Running Tests
+
 ```bash
 make test                 # Run pytest with coverage
 pytest                    # Direct pytest invocation
@@ -32,12 +34,14 @@ uv run pytest -n auto     # Run with parallel execution (xdist)
 ```
 
 ### Code Quality
+
 ```bash
 make format               # Run all pre-commit hooks (ruff, mypy, etc.)
 pre-commit run -a         # Same as make format
 ```
 
 ### Documentation
+
 ```bash
 make gen-docs             # Generate API docs from src/ and scripts/
 uv run mkdocs serve       # Serve docs at http://localhost:9987
@@ -45,26 +49,32 @@ uv run poe docs           # Generate and serve (requires dev group)
 ```
 
 ### CLI Entry Points
+
 The project defines two CLI entry points (both execute the same function):
+
 ```bash
 uv run repo_template      # Primary CLI entrypoint
 uv run cli                # Alternative entrypoint
 ```
 
 ### Building and Publishing
+
 ```bash
 uv build                  # Build wheel and sdist to dist/
 UV_PUBLISH_TOKEN=... uv publish   # Publish to PyPI
 ```
 
 ### Running from PyPI
+
 After publishing, the CLI can be run without installation:
+
 ```bash
 uvx repo_template                              # Run latest from PyPI
 uvx --from repo_template==0.1.0 repo_template  # Run specific version
 ```
 
 ### Maintenance
+
 ```bash
 make clean                # Remove caches, artifacts, generated docs
 ```
@@ -72,11 +82,13 @@ make clean                # Remove caches, artifacts, generated docs
 ## Project Architecture
 
 ### Source Layout
+
 - **`src/repo_template/`**: Main package code
   - `cli.py`: CLI entry point with example `Response` Pydantic model and `main()` function
   - Uses Pydantic models with `Field()` descriptors and Google-style docstrings
 
 ### Testing Infrastructure
+
 - **Test directory**: `tests/`
 - **Test discovery**: Files matching `test_*.py`
 - **Coverage**: Minimum 80% required (`--cov-fail-under=80`)
@@ -85,6 +97,7 @@ make clean                # Remove caches, artifacts, generated docs
 - **Async support**: `asyncio_mode = "auto"` for async test functions
 
 ### Documentation Generation
+
 - **Script**: `scripts/gen_docs.py` (async, supports concurrency)
 - **Modes**:
   - `--mode class`: Generate docs per class (default)
@@ -98,6 +111,7 @@ make clean                # Remove caches, artifacts, generated docs
   ```
 
 ### Docker and Services
+
 - **Dockerfile**: Multi-stage build with uv/uvx and Node.js
 - **docker-compose.yaml**: Includes optional services:
   - `redis` (port 6379)
@@ -111,7 +125,7 @@ make clean                # Remove caches, artifacts, generated docs
 
 All workflows are in `.github/workflows/`:
 
-- **test.yml**: Runs pytest on Python 3.10-3.13 for PRs to main/release/* (ignores markdown files)
+- **test.yml**: Runs pytest on Python 3.10-3.13 for PRs to main/release/\* (ignores markdown files)
 - **code-quality-check.yml**: Runs pre-commit hooks on PRs
 - **deploy.yml**: Builds and deploys MkDocs to GitHub Pages on push to main and tags `v*`
 - **build_package.yml**: Builds wheel/sdist on tags `v*`, generates changelog via git-cliff
