@@ -1,4 +1,4 @@
-name: Build Package
+name: Build and Release Package
 
 on:
   push:
@@ -68,8 +68,23 @@ jobs:
           compression-level: 6
           overwrite: true
 
+  release_package:
+    name: Create GitHub Release
+    needs: build_package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: List packaged files
+        run: ls -R dist/ | cat
+
       - name: Upload Release Assets
-        uses: softprops/action-gh-release@v2.3.3
+        uses: softprops/action-gh-release@v2
         with:
           files: |
-            ./dist/*
+            ./dist/*.whl
