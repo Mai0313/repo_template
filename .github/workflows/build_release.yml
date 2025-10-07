@@ -76,13 +76,11 @@ jobs:
           set -euo pipefail
           dest="dist/${{ matrix.target }}"
           mkdir -p "$dest"
-          bin_dir="target/${{ matrix.target }}/release"
           bin="${{ github.event.repository.name }}"
           if [[ "${{ matrix.runner }}" == windows* ]]; then
             bin="${bin}.exe"
           fi
-          # Copy only the binary to avoid uploading sidecar files like *.d
-          cp "${bin_dir}/${bin}" "${dest}/${bin}"
+          mv "dist/${bin}" "${dest}/${bin}"
 
       - name: Create .zip (Windows)
         shell: powershell
