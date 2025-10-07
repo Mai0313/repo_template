@@ -9,8 +9,33 @@ permissions: write-all
 
 jobs:
   build:
-    name: Build Executable File
-    runs-on: windows-latest
+    name: ${{ matrix.runner }} - ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-14
+            target: aarch64-apple-darwin
+            friendly_id: macos-arm64
+          - runner: macos-14
+            target: x86_64-apple-darwin
+            friendly_id: macos-x64
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-gnu
+            friendly_id: linux-x64-gnu
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
+            friendly_id: linux-arm64-gnu
+          - runner: windows-latest
+            target: x86_64-pc-windows-msvc
+            friendly_id: windows-x64
+          - runner: windows-11-arm
+            target: aarch64-pc-windows-msvc
+            friendly_id: windows-arm64
 
     steps:
       - name: Disable SSL Verify
@@ -31,40 +56,61 @@ jobs:
           version: "latest"
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Install dependencies
-      #   run: |
-      #     uv sync
-
-      # - name: Packaging to Executable file
-      #   run: |
-      #     uv pip install pyinstaller
-      #     pyinstaller -F main.py --onefile -n ${{ github.event.repository.name }}
-
-      - name: Get the version
-        id: version
-        shell: pwsh
+      - name: Install dependencies
         run: |
-          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-          $env:PYTHONUTF8 = "1"
-          $VERSION = (uvx dunamai from git --bump --no-metadata --style pep440)
-          uv version $VERSION
-          echo "Version: $VERSION"
-          echo "VERSION=$VERSION" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
-          echo "version=$VERSION" | Out-File -FilePath $Env:GITHUB_OUTPUT -Encoding utf8 -Append
+          uv add pyinstaller
+          uv sync --no-dev
 
-      - name: Move and Rename
-        shell: pwsh
+      - name: Packaging to Executable file
         run: |
-          New-Item -ItemType Directory -Path "./dist" -ErrorAction SilentlyContinue
-          Copy-Item -Path "./dist/*" -Destination "./" -Recurse -Force
-          Remove-Item -Recurse -Force build, dist, .venv, .cache, .git -ErrorAction SilentlyContinue
+          pyinstaller -F src/${{ github.event.repository.name }}/cli.py --onefile -n ${{ github.event.repository.name }}
 
-      - name: Upload Artifact
+      - name: Stage Artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest="dist/${{ matrix.target }}"
+          mkdir -p "$dest"
+          bin_dir="target/${{ matrix.target }}/release"
+          bin="${{ github.event.repository.name }}"
+          if [[ "${{ matrix.runner }}" == windows* ]]; then
+            bin="${bin}.exe"
+          fi
+          # Copy only the binary to avoid uploading sidecar files like *.d
+          cp "${bin_dir}/${bin}" "${dest}/${bin}"
+
+      - name: Create .zip (Windows)
+        shell: powershell
+        if: ${{ startsWith(matrix.runner, 'windows') }}
+        run: |
+          $ErrorActionPreference = "Stop"
+          $dest = "dist/${{ matrix.target }}"
+          $version = "${env:GITHUB_REF_NAME}".Substring(1)
+          $bin = "${{ github.event.repository.name }}.exe"
+          $zip = "${{ github.event.repository.name }}-v$version-${{ matrix.friendly_id }}.zip"
+          Compress-Archive -Path "$dest\$bin" -DestinationPath "$dest\$zip" -Force
+
+      - name: Create .tar.gz (all platforms)
+        shell: bash
+        if: ${{ !startsWith(matrix.runner, 'windows') }}
+        run: |
+          set -euo pipefail
+          dest="dist/${{ matrix.target }}"
+          version="${GITHUB_REF_NAME#v}"
+          bin="${{ github.event.repository.name }}"
+          archive="${{ github.event.repository.name }}-v${version}-${{ matrix.friendly_id }}.tar.gz"
+          # Try to include .exe if present, otherwise fall back to unix name
+          tar -C "$dest" -czf "$dest/${archive}" "${bin}" "${bin}.exe" 2>/dev/null || \
+          tar -C "$dest" -czf "$dest/${archive}" "${bin}"
+          # Remove raw binaries after archiving to avoid accidental upload
+          rm -f "$dest/${bin}" "$dest/${bin}.exe" || true
+
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4.6.2
         with:
-          path: ./*
-          name: ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}
-          if-no-files-found: ignore
+          name: ${{ matrix.friendly_id }}
+          path: dist/${{ matrix.target }}/*
+          if-no-files-found: error
           retention-days: 7
           compression-level: 6
           overwrite: true
@@ -78,11 +124,11 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}
-          path: ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}
+          path: dist
+          merge-multiple: true
 
       - name: Upload Release Assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
+            dist/**/*
