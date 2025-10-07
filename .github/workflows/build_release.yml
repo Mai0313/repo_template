@@ -68,7 +68,7 @@ jobs:
 
       - name: Packaging to Executable file
         run: |
-          pyinstaller -F src/${{ github.event.repository.name }}/cli.py --onefile -n ${{ github.event.repository.name }}
+          uv run pyinstaller -F src/${{ github.event.repository.name }}/cli.py --onefile -n ${{ github.event.repository.name }}
 
       - name: Stage Artifact
         shell: bash
