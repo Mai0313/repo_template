@@ -8,7 +8,7 @@ on:
 permissions: write-all
 
 jobs:
-  build_executable:
+  build:
     name: Build Executable File
     runs-on: windows-latest
 
@@ -69,20 +69,20 @@ jobs:
           compression-level: 6
           overwrite: true
 
-      - name: Download Artifact
-        uses: actions/download-artifact@v5.0.0
+  release:
+    name: Release Package
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
         with:
           name: ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}
           path: ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}
 
-      - name: Check Files
-        shell: pwsh
-        run: |
-          Compress-Archive -Path "${{ github.event.repository.name }}_${{ steps.version.outputs.version }}" -DestinationPath "${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip" -Force
-          ls -Force
-
       - name: Upload Release Assets
-        uses: softprops/action-gh-release@v2.3.3
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             ${{ github.event.repository.name }}_${{ steps.version.outputs.version }}.zip
