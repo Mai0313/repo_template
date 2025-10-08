@@ -169,7 +169,7 @@ Publish to PyPI (requires `UV_PUBLISH_TOKEN`):
 UV_PUBLISH_TOKEN=... uv publish
 ```
 
-CI builds also run automatically on tags matching `v*` and upload artifacts. Uncomment the publish step in `build_package.yml` to automate releases to PyPI.
+CI builds automatically run on tags matching `v*`, building multi-platform executables and Python packages, then uploading them to GitHub Release. To automate releases to PyPI, add the `UV_PUBLISH_TOKEN` secret in your repository settings (`build_release.yml` is already configured for automatic publishing).
 
 ### Run your CLI locally and from PyPI
 
@@ -227,23 +227,23 @@ All workflows live in `.github/workflows/`. This section explains what each acti
     - Enable GitHub Pages for the repo (Actions → Pages)
     - The workflow configures and uploads the site automatically
 
-- Build Package (`build_package.yml`)
+- Build and Release (`build_release.yml`)
 
-  - Trigger: Tags `v*`
-  - Builds wheel/sdist via `uv build` and uploads artifacts; updates changelog
-  - Optional publish: uncomment the `uv publish` step and add secret `UV_PUBLISH_TOKEN`
+  - Trigger: Tags `v*` push or manual workflow dispatch
+  - Builds multi-platform executables (via PyInstaller):
+    - macOS (ARM64, x64)
+    - Linux (x64 GNU, ARM64 GNU)
+    - Windows (x64, ARM64)
+  - Builds Python package (wheel & sdist)
+  - Automatically publishes to PyPI (requires `UV_PUBLISH_TOKEN` secret)
+  - Uploads all artifacts to GitHub Release
+  - Note: This is a template demonstration workflow. Adjust to your project needs.
 
 - Publish Docker Image (`build_image.yml`)
 
   - Trigger: Push to `main` and tags `v*`
   - Builds and pushes a Docker image to GHCR: `ghcr.io/<owner>/<repo>`
   - Setup needed: none (uses `GITHUB_TOKEN`); ensure `docker/Dockerfile` defines `prod` target
-
-- Build Executable (`build_executable.yml`)
-
-  - Trigger: Tags `v*` (Windows runner)
-  - Currently stubs out packaging (example commented). Uploads a zip artifact
-  - To ship a real executable, add your PyInstaller (or similar) steps
 
 - Release Drafter (`release_drafter.yml`)
 
@@ -268,8 +268,9 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 ### CI/CD Configuration Checklist
 
 - Conventional commits for PR titles (enforced by the workflow)
-- Optional: set `UV_PUBLISH_TOKEN` secret to publish to PyPI
-- Optional: enable GitHub Pages (used by docs deploy)
+- Optional: set `UV_PUBLISH_TOKEN` secret to publish to PyPI (Settings → Secrets and variables → Actions)
+- Optional: enable GitHub Pages for docs deployment (Settings → Pages → Source: GitHub Actions)
+- Optional: ensure GHCR permissions for Docker image publishing (Settings → Actions → General → Workflow permissions: Read and write)
 - Container Registry permissions are handled automatically via `GITHUB_TOKEN`
 
 ## 🧩 Example CLI

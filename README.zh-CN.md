@@ -169,7 +169,7 @@ uv build
 UV_PUBLISH_TOKEN=... uv publish
 ```
 
-CI 亦会在建立 `v*` 标签时自动打包并上传产物。若要自动发布到 PyPI，请在 `build_package.yml` 取消注释 publish 步骤并设置 secret。
+CI 亦会在建立 `v*` 标签时自动打包多平台可执行文件与 Python 包，并上传到 GitHub Release。若要自动发布到 PyPI，请在 repository 设置中新增 `UV_PUBLISH_TOKEN` secret（`build_release.yml` 已设置自动发布）。
 
 ### 在本机与 PyPI 执行你的 CLI
 
@@ -223,21 +223,22 @@ uvx poe docs
   - 构建并发布 MkDocs 网站到 GitHub Pages
   - 需在 GitHub 启用 Pages（Actions → Pages）
 
-- Build Package（`build_package.yml`）
+- Build and Release（`build_release.yml`）
 
-  - 触发：`v*` 标签
-  - 以 `uv build` 打包并上传产物，并更新变更日志
-  - 发布到 PyPI：取消注释 `uv publish` 并新增 `UV_PUBLISH_TOKEN` secret
+  - 触发：`v*` 标签推送或手动触发
+  - 构建多平台可执行文件（通过 PyInstaller）：
+    - macOS（ARM64、x64）
+    - Linux（x64 GNU、ARM64 GNU）
+    - Windows（x64、ARM64）
+  - 构建 Python 包（wheel & sdist）
+  - 自动发布到 PyPI（需设置 `UV_PUBLISH_TOKEN` secret）
+  - 上传所有产物至 GitHub Release
+  - 注意：此为 template 示范流程，请依实际项目需求调整
 
 - Publish Docker Image（`build_image.yml`）
 
   - 触发：推送到 `main` 与 `v*` 标签
   - 发布至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 内有 `prod` target）
-
-- Build Executable（`build_executable.yml`）
-
-  - 触发：`v*` 标签（Windows runner）
-  - 示例流程（目前演示，请自行加入打包步骤）
 
 - Release Drafter（`release_drafter.yml`）
 
@@ -262,8 +263,9 @@ uvx poe docs
 ### CI/CD 设置清单
 
 - PR 标题遵循 Conventional Commits
-- （选用）发布到 PyPI：新增 `UV_PUBLISH_TOKEN` secret
-- （选用）启用 GitHub Pages 以发布文档
+- （选用）发布到 PyPI：在 repository 设置中新增 `UV_PUBLISH_TOKEN` secret（Settings → Secrets and variables → Actions）
+- （选用）启用 GitHub Pages 以发布文档（Settings → Pages → Source: GitHub Actions）
+- （选用）发布 Docker 镜像：确认 GHCR 权限已启用（Settings → Actions → General → Workflow permissions: Read and write）
 
 ## 🧩 示例 CLI
 
