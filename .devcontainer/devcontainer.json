@@ -2,14 +2,13 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "anthropic.claude-code",
+        "openai.chatgpt",
         "natqe.reload",
-        "eamodio.gitlens",
         "redhat.vscode-yaml",
         "ryu1kn.partial-diff",
         "oderwat.indent-rainbow",
-        "cweijan.dbclient-jdbc",
         "tamasfe.even-better-toml",
-        "cweijan.vscode-redis-client",
         "github.copilot",
         "github.copilot-chat",
         "ms-python.python",
@@ -24,15 +23,16 @@
         "ms-kubernetes-tools.vscode-kubernetes-tools"
       ],
       "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {
           "bash": {
-            "path": "/bin/bash"
+            "path": "bash",
+            "icon": "terminal-bash"
           },
           "zsh": {
-            "path": "/usr/bin/zsh"
+            "path": "zsh"
           }
-        },
-        "terminal.integrated.defaultProfile.linux": "zsh"
+        }
       }
     }
   },
