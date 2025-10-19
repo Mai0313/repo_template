@@ -3,7 +3,7 @@
 # Python Project Template
 
 [![PyPI version](https://img.shields.io/pypi/v/swebenchv2.svg)](https://pypi.org/project/swebenchv2/)
-[![python](https://img.shields.io/badge/-Python_%7C_3.10%7C_3.11%7C_3.12%7C_3.13-blue?logo=python&logoColor=white)](https://www.python.org/downloads/source/)
+[![python](https://img.shields.io/badge/-Python_%7C_3.11%7C_3.12%7C_3.13%7C_3.14-blue?logo=python&logoColor=white)](https://www.python.org/downloads/source/)
 [![uv](https://img.shields.io/badge/-uv_dependency_management-2C5F2D?logo=python&logoColor=white)](https://docs.astral.sh/uv/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://docs.pydantic.dev/latest/contributing/#badges)
@@ -46,7 +46,7 @@ Other Languages: [English](README.md) | [繁體中文](README.zh-TW.md) | [简�
 
 Prerequisites:
 
-- Python 3.10–3.13
+- Python 3.11–3.14
 - `uv` (install with `make uv-install`)
 - Pre-commit hooks: either `uv tool install pre-commit` or `uv sync --group dev`
 
@@ -210,7 +210,7 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 - Tests (`test.yml`)
 
   - Trigger: Pull requests to `main` or `release/*` (ignores md files)
-  - Runs pytest on Python 3.10/3.11/3.12/3.13 with coverage and comments a summary
+  - Runs pytest on Python 3.11/3.12/3.13/3.14 with coverage and comments a summary
   - Setup needed: none
 
 - Code Quality Check (`code-quality-check.yml`)

@@ -3,7 +3,7 @@
 # Python 專案模板
 
 [![PyPI version](https://img.shields.io/pypi/v/swebenchv2.svg)](https://pypi.org/project/swebenchv2/)
-[![python](https://img.shields.io/badge/-Python_%7C_3.10%7C_3.11%7C_3.12%7C_3.13-blue?logo=python&logoColor=white)](https://www.python.org/downloads/source/)
+[![python](https://img.shields.io/badge/-Python_%7C_3.11%7C_3.12%7C_3.13%7C_3.14-blue?logo=python&logoColor=white)](https://www.python.org/downloads/source/)
 [![uv](https://img.shields.io/badge/-uv_dependency_management-2C5F2D?logo=python&logoColor=white)](https://docs.astral.sh/uv/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://docs.pydantic.dev/latest/contributing/#badges)
@@ -46,7 +46,7 @@
 
 需求：
 
-- Python 3.10–3.13
+- Python 3.11–3.14
 - `uv`（可用 `make uv-install` 安裝）
 - pre-commit hooks：`uv tool install pre-commit` 或 `uv sync --group dev`
 
@@ -210,7 +210,7 @@ uvx poe docs
 - Tests（`test.yml`）
 
   - 觸發：對 `main`、`release/*` 的 PR
-  - 執行 pytest（3.10/3.11/3.12/3.13）並留下覆蓋率摘要
+  - 執行 pytest（3.11/3.12/3.13/3.14）並留下覆蓋率摘要
 
 - Code Quality（`code-quality-check.yml`）
 

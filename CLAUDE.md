@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a Python project template designed to bootstrap production-ready projects quickly. The codebase follows a modern `src/` layout with comprehensive tooling for development, testing, documentation, and deployment.
 
 **Package name**: `repo_template`
-**Python support**: 3.10, 3.11, 3.12, 3.13
+**Python support**: 3.11, 3.12, 3.13, 3.14
 **Dependency manager**: `uv`
 **Documentation**: MkDocs Material with mkdocstrings
 
@@ -125,7 +125,7 @@ make clean                # Remove caches, artifacts, generated docs
 
 All workflows are in `.github/workflows/`:
 
-- **test.yml**: Runs pytest on Python 3.10-3.13 for PRs to main/release/\* (ignores markdown files)
+- **test.yml**: Runs pytest on Python 3.11-3.14 for PRs to main/release/\* (ignores markdown files)
 - **code-quality-check.yml**: Runs pre-commit hooks on PRs
 - **deploy.yml**: Builds and deploys MkDocs to GitHub Pages on push to main and tags `v*`
 - **build_package.yml**: Builds wheel/sdist on tags `v*`, generates changelog via git-cliff
