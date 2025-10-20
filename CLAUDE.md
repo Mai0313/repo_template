@@ -112,7 +112,7 @@ make clean                # Remove caches, artifacts, generated docs
 
 ### Docker and Services
 
-- **Dockerfile**: Multi-stage build with uv/uvx and Node.js
+- **Dockerfile**: Located at `docker/Dockerfile`; multi-stage build with uv/uvx and Node.js
 - **docker-compose.yaml**: Includes optional services:
   - `redis` (port 6379)
   - `postgresql` (port 5432)
@@ -128,12 +128,14 @@ All workflows are in `.github/workflows/`:
 - **test.yml**: Runs pytest on Python 3.11-3.14 for PRs to main/release/\* (ignores markdown files)
 - **code-quality-check.yml**: Runs pre-commit hooks on PRs
 - **deploy.yml**: Builds and deploys MkDocs to GitHub Pages on push to main and tags `v*`
-- **build_package.yml**: Builds wheel/sdist on tags `v*`, generates changelog via git-cliff
+- **build_release.yml**: Builds multi-platform executables (PyInstaller), wheel/sdist, and publishes to PyPI on tags `v*`
 - **build_image.yml**: Builds and pushes Docker image to GHCR on main and tags `v*`
 - **release_drafter.yml**: Maintains draft releases from Conventional Commits
 - **auto_labeler.yml**: Auto-applies PR labels based on `.github/labeler.yml`
 - **code_scan.yml**: Runs gitleaks for secret detection
 - **semantic-pull-request.yml**: Enforces Conventional Commit PR titles
+- **pre-commit-updater.yml**: Auto-updates pre-commit hooks
+- **dependency-review.yml**: Reviews dependency changes in PRs
 
 ### Code Style and Linting
 
@@ -176,9 +178,9 @@ uv remove <package>           # Remove dependency
 
 1. Tag with version: `git tag v0.1.0`
 2. Push tag: `git push origin v0.1.0`
-3. CI builds package and Docker image
+3. CI builds multi-platform executables (macOS, Linux, Windows), Python package (wheel/sdist), and Docker image
 4. Optional: Auto-publish to PyPI (requires UV_PUBLISH_TOKEN secret)
-5. Changelog auto-generated via git-cliff
+5. All artifacts uploaded to GitHub Release automatically
 6. Draft release created via release_drafter
 
 ## Documentation System
