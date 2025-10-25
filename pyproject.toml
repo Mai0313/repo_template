@@ -161,6 +161,7 @@ exclude = [
 ]
 
 [tool.poe.tasks]
+cli = "python ./src/repo_template/cli.py"
 api = "python ./src/repo_template/cli.py"
 main = "python ./src/repo_template/cli.py"
 
@@ -326,7 +327,7 @@ select = [
     # "ERA",  # eradicate
     "PD",  # pandas-vet
     # "PGH",  # pygrep-hooks
-    # "PL",  # Pylint
+    "PL",  # Pylint
     # "TRY",  # tryceratops
     "FLY",  # flynt
     "NPY",  # NumPy-specific rules
@@ -340,7 +341,7 @@ select = [
 
 ignore = [
     # Additional ignore
-    "E501", "E402",
+    "E501",
     # Missing Docs in functions
     "D100", "D101", "D102", "D103", "D107", "D205", "D415",
     # Doc line too long
@@ -359,6 +360,14 @@ ignore = [
     "PERF401",
     # Use `list` or `list.copy` to create a copy of a list
     "PERF402",
+    # constants ("magic") values in comparisons
+    "PLR2004",
+    # Too many branches in function
+    "PLR0912",
+    # Too many statements in function
+    "PLR0915",
+    # Too many arguments for function
+    "PLR0913",
 ]
 
 [tool.ruff.lint.pycodestyle]
@@ -375,16 +384,14 @@ ignore-decorators = []
 property-decorators = []
 
 [tool.ruff.lint.pyflakes]
-extend-generics = ["pyrootutils", "autorootcwd", "autoroot", "src.utils.loggers"]
+extend-generics = ["pyrootutils", "autorootcwd", "autoroot"]
 
 [tool.ruff.lint.pyupgrade]
 # Preserve types, even if a file imports `from __future__ import annotations`.
 keep-runtime-typing = true
 
 [tool.ruff.lint.per-file-ignores]
-
-# Ignore `E402` (import violations) in all `__init__.py` files, and in `path/to/file.py`.
-"__init__.py" = ["E402", "F401", "D104"]
+"__init__.py" = ["F401", "D104"]
 "*.ipynb" = ["T201", "F401", "S105", "F811", "ANN", "PERF", "SLF"]
 "tests/*" = ["S101", "SLF001"]
 "notebooks/*.ipynb" = ["UP", "DOC", "RUF", "D", "C", "F401", "T201"]
