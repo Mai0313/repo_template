@@ -84,8 +84,8 @@ make clean                # Remove caches, artifacts, generated docs
 ### Source Layout
 
 - **`src/repo_template/`**: Main package code
-  - `cli.py`: CLI entry point with example `Response` Pydantic model and `main()` function
-  - Uses Pydantic models with `Field()` descriptors and Google-style docstrings
+    - `cli.py`: CLI entry point with example `Response` Pydantic model and `main()` function
+    - Uses Pydantic models with `Field()` descriptors and Google-style docstrings
 
 ### Testing Infrastructure
 
@@ -100,25 +100,25 @@ make clean                # Remove caches, artifacts, generated docs
 
 - **Script**: `scripts/gen_docs.py` (async, supports concurrency)
 - **Modes**:
-  - `--mode class`: Generate docs per class (default)
-  - `--mode file`: Generate docs per file
+    - `--mode class`: Generate docs per class (default)
+    - `--mode file`: Generate docs per file
 - **File types**: Supports `.py` and `.ipynb` (notebooks)
 - **Execution**: `--execute` flag to run notebooks before conversion
 - **Output**: Preserves source folder structure in docs
 - **Usage**:
-  ```bash
-  python scripts/gen_docs.py --source ./src --output ./docs/Reference gen_docs
-  ```
+    ```bash
+    python scripts/gen_docs.py --source ./src --output ./docs/Reference gen_docs
+    ```
 
 ### Docker and Services
 
 - **Dockerfile**: Located at `docker/Dockerfile`; multi-stage build with uv/uvx and Node.js
 - **docker-compose.yaml**: Includes optional services:
-  - `redis` (port 6379)
-  - `postgresql` (port 5432)
-  - `mongodb` (port 27017)
-  - `mysql` (port 3306)
-  - `app`: Example service running the CLI
+    - `redis` (port 6379)
+    - `postgresql` (port 5432)
+    - `mongodb` (port 27017)
+    - `mysql` (port 3306)
+    - `app`: Example service running the CLI
 - **Configuration**: Via `.env` file (see README.md for keys)
 
 ### CI/CD Workflows
@@ -146,8 +146,8 @@ All workflows are in `.github/workflows/`:
 - **Docstrings**: Google-style (configured in mkdocstrings)
 - **Allowed confusables**: Chinese punctuation marks are allowed
 - **Per-file ignores**:
-  - `tests/*`: Ignore S101 (assert), ANN (annotations), SLF001 (private access)
-  - `*.ipynb`: Ignore T201 (print), F401 (unused imports), S105, F811, ANN, PERF, SLF
+    - `tests/*`: Ignore S101 (assert), ANN (annotations), SLF001 (private access)
+    - `*.ipynb`: Ignore T201 (print), F401 (unused imports), S105, F811, ANN, PERF, SLF
 
 ### Dependency Management
 
@@ -170,8 +170,8 @@ uv remove <package>           # Remove dependency
 - Coverage reports committed to `.github/reports/`
 - PR comments show coverage summary automatically
 - Use markers for special cases:
-  - `@pytest.mark.slow`: For slow tests
-  - `@pytest.mark.skip_when_ci`: Skip in CI/CD
+    - `@pytest.mark.slow`: For slow tests
+    - `@pytest.mark.skip_when_ci`: Skip in CI/CD
 - Async tests are automatically detected and run
 
 ## Publishing Workflow

@@ -209,61 +209,61 @@ All workflows live in `.github/workflows/`. This section explains what each acti
 
 - Tests (`test.yml`)
 
-  - Trigger: Pull requests to `main` or `release/*` (ignores md files)
-  - Runs pytest on Python 3.11/3.12/3.13/3.14 with coverage and comments a summary
-  - Setup needed: none
+    - Trigger: Pull requests to `main` or `release/*` (ignores md files)
+    - Runs pytest on Python 3.11/3.12/3.13/3.14 with coverage and comments a summary
+    - Setup needed: none
 
 - Code Quality Check (`code-quality-check.yml`)
 
-  - Trigger: Pull requests
-  - Runs ruff and other pre-commit hooks
-  - Setup needed: none
+    - Trigger: Pull requests
+    - Runs ruff and other pre-commit hooks
+    - Setup needed: none
 
 - Docs Deploy (`deploy.yml`)
 
-  - Trigger: Push to `main` and tags `v*`
-  - Builds `mkdocs` site and publishes to GitHub Pages
-  - Setup needed:
-    - Enable GitHub Pages for the repo (Actions → Pages)
-    - The workflow configures and uploads the site automatically
+    - Trigger: Push to `main` and tags `v*`
+    - Builds `mkdocs` site and publishes to GitHub Pages
+    - Setup needed:
+        - Enable GitHub Pages for the repo (Actions → Pages)
+        - The workflow configures and uploads the site automatically
 
 - Build and Release (`build_release.yml`)
 
-  - Trigger: Tags `v*` push or manual workflow dispatch
-  - Builds multi-platform executables (via PyInstaller):
-    - macOS (ARM64, x64)
-    - Linux (x64 GNU, ARM64 GNU)
-    - Windows (x64, ARM64)
-  - Builds Python package (wheel & sdist)
-  - Automatically publishes to PyPI (requires `UV_PUBLISH_TOKEN` secret)
-  - Uploads all artifacts to GitHub Release
-  - Note: This is a template demonstration workflow. Adjust to your project needs.
+    - Trigger: Tags `v*` push or manual workflow dispatch
+    - Builds multi-platform executables (via PyInstaller):
+        - macOS (ARM64, x64)
+        - Linux (x64 GNU, ARM64 GNU)
+        - Windows (x64, ARM64)
+    - Builds Python package (wheel & sdist)
+    - Automatically publishes to PyPI (requires `UV_PUBLISH_TOKEN` secret)
+    - Uploads all artifacts to GitHub Release
+    - Note: This is a template demonstration workflow. Adjust to your project needs.
 
 - Publish Docker Image (`build_image.yml`)
 
-  - Trigger: Push to `main` and tags `v*`
-  - Builds and pushes a Docker image to GHCR: `ghcr.io/<owner>/<repo>`
-  - Setup needed: none (uses `GITHUB_TOKEN`); ensure `docker/Dockerfile` defines `prod` target
+    - Trigger: Push to `main` and tags `v*`
+    - Builds and pushes a Docker image to GHCR: `ghcr.io/<owner>/<repo>`
+    - Setup needed: none (uses `GITHUB_TOKEN`); ensure `docker/Dockerfile` defines `prod` target
 
 - Release Drafter (`release_drafter.yml`)
 
-  - Trigger: Push to `main` and PR events
-  - Maintains a draft release based on Conventional Commits
+    - Trigger: Push to `main` and PR events
+    - Maintains a draft release based on Conventional Commits
 
 - Pull Request Labeler (`auto_labeler.yml`)
 
-  - Trigger: PRs and pushes
-  - Auto-applies labels defined in `.github/labeler.yml`
+    - Trigger: PRs and pushes
+    - Auto-applies labels defined in `.github/labeler.yml`
 
 - Secret Scanning (`secret_scan.yml`)
 
-  - Trigger: Push and PR
-  - Runs gitleaks to detect leaked secrets
+    - Trigger: Push and PR
+    - Runs gitleaks to detect leaked secrets
 
 - Semantic Pull Request (`semantic-pull-request.yml`)
 
-  - Trigger: PR open/edit/sync
-  - Enforces Conventional Commit style PR titles
+    - Trigger: PR open/edit/sync
+    - Enforces Conventional Commit style PR titles
 
 ### CI/CD Configuration Checklist
 

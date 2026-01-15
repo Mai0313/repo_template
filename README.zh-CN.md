@@ -28,19 +28,19 @@
 - pre-commit 包链：ruff、mdformat（含多插件）、codespell、nbstripout、mypy、uv hooks
 - 类型严谨：mypy + Pydantic 插件设置
 - pytest + coverage + xdist；PR 覆盖率摘要留言
-  - 覆盖率门槛 80%，HTML/XML 报告输出至 `.github/`
+    - 覆盖率门槛 80%，HTML/XML 报告输出至 `.github/`
 - MkDocs Material + mkdocstrings（继承图）、markdown-exec、MathJax
-  - 开发服务器 `0.0.0.0:9987`；双语文档脚手架
+    - 开发服务器 `0.0.0.0:9987`；双语文档脚手架
 - 文档生成脚本：支持 class/文件两种模式、可选执行 notebook、可并发、保留目录结构
-  - 使用 anyio 异步处理与 rich 进度条
+    - 使用 anyio 异步处理与 rich 进度条
 - 打包：`uv build`、git-cliff 产 changelog
 - CI 自动版本：以 `dunamai` 从 git 产 PEP 440 版本
 - Dockerfile 多阶段（内含 uv/uvx 与 Node.js）；Compose 服务（Redis/Postgres/Mongo/MySQL）含 healthcheck 与 volume
 - GitHub Actions：测试、质量、文档部署、包打包、Docker 推送（GHCR + buildx cache）、Release Drafter、自动标签、秘密扫描、语义化 PR、pre-commit 自动更新
-  - pre-commit 同时挂载多个 git 阶段（pre-commit、post-checkout、post-merge、post-rewrite）
-  - i18n 友善检查（允许中文标点等 confusables）
-  - 文档列出可替代的环境管理（Rye、Conda）
-  - 兼容旧式流程：可用 `uv pip` 导出 `requirements.txt`
+    - pre-commit 同时挂载多个 git 阶段（pre-commit、post-checkout、post-merge、post-rewrite）
+    - i18n 友善检查（允许中文标点等 confusables）
+    - 文档列出可替代的环境管理（Rye、Conda）
+    - 兼容旧式流程：可用 `uv pip` 导出 `requirements.txt`
 
 ## 🚀 快速开始
 
@@ -209,56 +209,56 @@ uvx poe docs
 
 - Tests（`test.yml`）
 
-  - 触发：对 `main`、`release/*` 的 PR
-  - 执行 pytest（3.11/3.12/3.13/3.14）并留下覆盖率摘要
+    - 触发：对 `main`、`release/*` 的 PR
+    - 执行 pytest（3.11/3.12/3.13/3.14）并留下覆盖率摘要
 
 - Code Quality（`code-quality-check.yml`）
 
-  - 触发：PR
-  - 执行 ruff 与其它 pre-commit hooks
+    - 触发：PR
+    - 执行 ruff 与其它 pre-commit hooks
 
 - Docs Deploy（`deploy.yml`）
 
-  - 触发：推送到 `main` 与 `v*` 标签
-  - 构建并发布 MkDocs 网站到 GitHub Pages
-  - 需在 GitHub 启用 Pages（Actions → Pages）
+    - 触发：推送到 `main` 与 `v*` 标签
+    - 构建并发布 MkDocs 网站到 GitHub Pages
+    - 需在 GitHub 启用 Pages（Actions → Pages）
 
 - Build and Release（`build_release.yml`）
 
-  - 触发：`v*` 标签推送或手动触发
-  - 构建多平台可执行文件（通过 PyInstaller）：
-    - macOS（ARM64、x64）
-    - Linux（x64 GNU、ARM64 GNU）
-    - Windows（x64、ARM64）
-  - 构建 Python 包（wheel & sdist）
-  - 自动发布到 PyPI（需设置 `UV_PUBLISH_TOKEN` secret）
-  - 上传所有产物至 GitHub Release
-  - 注意：此为 template 示范流程，请依实际项目需求调整
+    - 触发：`v*` 标签推送或手动触发
+    - 构建多平台可执行文件（通过 PyInstaller）：
+        - macOS（ARM64、x64）
+        - Linux（x64 GNU、ARM64 GNU）
+        - Windows（x64、ARM64）
+    - 构建 Python 包（wheel & sdist）
+    - 自动发布到 PyPI（需设置 `UV_PUBLISH_TOKEN` secret）
+    - 上传所有产物至 GitHub Release
+    - 注意：此为 template 示范流程，请依实际项目需求调整
 
 - Publish Docker Image（`build_image.yml`）
 
-  - 触发：推送到 `main` 与 `v*` 标签
-  - 发布至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 内有 `prod` target）
+    - 触发：推送到 `main` 与 `v*` 标签
+    - 发布至 GHCR：`ghcr.io/<owner>/<repo>`（需 `docker/Dockerfile` 内有 `prod` target）
 
 - Release Drafter（`release_drafter.yml`）
 
-  - 触发：推送到 `main` 与 PR 事件
-  - 基于 Conventional Commits 维护草稿发布
+    - 触发：推送到 `main` 与 PR 事件
+    - 基于 Conventional Commits 维护草稿发布
 
 - PR Labeler（`auto_labeler.yml`）
 
-  - 触发：PR 与 Push
-  - 依 `.github/labeler.yml` 自动加标签
+    - 触发：PR 与 Push
+    - 依 `.github/labeler.yml` 自动加标签
 
 - Secret Scanning（`secret_scan.yml`）
 
-  - 触发：Push 与 PR
-  - 使用 gitleaks 扫描机密
+    - 触发：Push 与 PR
+    - 使用 gitleaks 扫描机密
 
 - Semantic Pull Request（`semantic-pull-request.yml`）
 
-  - 触发：PR 开启/更新
-  - 强制 PR 标题符合 Conventional Commits
+    - 触发：PR 开启/更新
+    - 强制 PR 标题符合 Conventional Commits
 
 ### CI/CD 设置清单
 
