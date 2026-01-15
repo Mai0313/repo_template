@@ -15,7 +15,7 @@ default_stages:
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.0
+    rev: v0.14.11
     hooks:
       - id: ruff-check
         types_or: [ python, pyi, jupyter ]
@@ -78,12 +78,12 @@ repos:
           - mdformat-ruff  # python
           - mdformat-rustfmt  # rust
           - mdformat-shfmt  # bash, sh
-          - mdformat-web  # javascript, js, css, html, xml
+          # - mdformat-web  # javascript, js, css, html, xml
           # Parser extension plugins
           # - mdformat-admon  # admonitions
           # - mdformat-deflist  # definition lists
-          - mdformat-footnote  # footnotes
-          - mdformat-frontmatter  # front matter
+          - mdformat-footnote>=0.1.2  # footnotes
+          # - mdformat-frontmatter  # front matter
           - mdformat-gfm  # GitHub Flavored Markdown (includes tables)
           - mdformat-gfm-alerts  # GFM alerts
           - mdformat-mkdocs  # MKDocs
@@ -98,7 +98,7 @@ repos:
 
   # jupyter notebook cell output clearing
   - repo: https://github.com/kynan/nbstripout
-    rev: 0.8.1
+    rev: 0.8.2
     hooks:
       - id: nbstripout
 
@@ -117,7 +117,7 @@ repos:
   #       entry: bash -c 'if command -v code2flow >/dev/null 2>&1; then code2flow **/**/*.py -o ./.github/code2flow/flow.png; else echo "code2flow not installed, skipping"; fi'
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.18.2
+    rev: v1.19.1
     hooks:
       - id: mypy
         additional_dependencies:
@@ -137,12 +137,12 @@ repos:
   #       pass_filenames: false
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.3
+    rev: 0.9.25
     hooks:
       - id: uv-sync
       - id: uv-lock
