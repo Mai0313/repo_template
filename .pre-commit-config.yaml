@@ -15,7 +15,7 @@ default_stages:
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.13
+    rev: v0.15.0
     hooks:
       - id: ruff-check
         types_or: [ python, pyi, jupyter ]
@@ -62,7 +62,7 @@ repos:
 
   # md formatting
   - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.22
+    rev: 1.0.0
     hooks:
       - id: mdformat
         args:
@@ -142,7 +142,7 @@ repos:
       - id: gitleaks
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.26
+    rev: 0.9.30
     hooks:
       - id: uv-sync
       - id: uv-lock
