@@ -54,32 +54,35 @@ This is the recommended workflow for starting a new project:
 1. **Create Your Repository**: Click [Use this template](https://github.com/Mai0313/repo_template/generate) to create a new repository
 
 2. **Clone and Setup**:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/your_new_project.git
-   cd your_new_project
-   make uv-install               # Install uv (only needed once)
-   uv sync                       # Install dependencies
-   uv tool install pre-commit    # Install pre-commit
-   ```
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/your_new_project.git
+    cd your_new_project
+    make uv-install               # Install uv (only needed once)
+    uv sync                       # Install dependencies
+    uv tool install pre-commit    # Install pre-commit
+    ```
 
 3. **Rename the Project**:
-   - Rename `src/repo_template/` directory to `src/your_project_name/`
-   - Update all imports from `repo_template` to `your_project_name`
-   - Update `pyproject.toml` with your project details:
-     - Project name, version, description, authors
-     - Homepage and Repository URLs
-     - CLI script names if needed
-   - Update `mkdocs.yml`: site_name, site_url, repo_name, repo_url, site_author
-   - Update all three README files (preserve badges, only update URLs)
-   - Update `.github/CODEOWNERS` with your GitHub username
-   - Update Docker labels in `docker/Dockerfile` and `.devcontainer/Dockerfile`
+
+    - Rename `src/repo_template/` directory to `src/your_project_name/`
+    - Update all imports from `repo_template` to `your_project_name`
+    - Update `pyproject.toml` with your project details:
+        - Project name, version, description, authors
+        - Homepage and Repository URLs
+        - CLI script names if needed
+    - Update `mkdocs.yml`: site_name, site_url, repo_name, repo_url, site_author
+    - Update all three README files (preserve badges, only update URLs)
+    - Update `.github/CODEOWNERS` with your GitHub username
+    - Update Docker labels in `docker/Dockerfile` and `.devcontainer/Dockerfile`
 
 4. **Verify Setup**:
-   ```bash
-   make format                   # Run pre-commit hooks
-   make test                     # Run tests
-   uv run your_project_name      # Test your CLI
-   ```
+
+    ```bash
+    make format                   # Run pre-commit hooks
+    make test                     # Run tests
+    uv run your_project_name      # Test your CLI
+    ```
 
 ### For Template Developers (Testing This Template)
 

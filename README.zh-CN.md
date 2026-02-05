@@ -54,32 +54,35 @@
 1. **创建您的仓库**：点击 [使用此模板](https://github.com/Mai0313/repo_template/generate) 创建新仓库
 
 2. **克隆并设置**：
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/your_new_project.git
-   cd your_new_project
-   make uv-install               # 安装 uv（仅需一次）
-   uv sync                       # 安装依赖
-   uv tool install pre-commit    # 安装 pre-commit
-   ```
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/your_new_project.git
+    cd your_new_project
+    make uv-install               # 安装 uv（仅需一次）
+    uv sync                       # 安装依赖
+    uv tool install pre-commit    # 安装 pre-commit
+    ```
 
 3. **重命名项目**：
-   - 将 `src/repo_template/` 目录重命名为 `src/your_project_name/`
-   - 更新所有从 `repo_template` 到 `your_project_name` 的导入
-   - 更新 `pyproject.toml` 中的项目详情：
-     - 项目名称、版本、描述、作者
-     - 主页和仓库 URL
-     - CLI 脚本名称（如需要）
-   - 更新 `mkdocs.yml`：site_name、site_url、repo_name、repo_url、site_author
-   - 更新所有三个 README 文件（保留徽章，仅更新 URL）
-   - 更新 `.github/CODEOWNERS` 为您的 GitHub 用户名
-   - 更新 `docker/Dockerfile` 和 `.devcontainer/Dockerfile` 中的 Docker 标签
+
+    - 将 `src/repo_template/` 目录重命名为 `src/your_project_name/`
+    - 更新所有从 `repo_template` 到 `your_project_name` 的导入
+    - 更新 `pyproject.toml` 中的项目详情：
+        - 项目名称、版本、描述、作者
+        - 主页和仓库 URL
+        - CLI 脚本名称（如需要）
+    - 更新 `mkdocs.yml`：site_name、site_url、repo_name、repo_url、site_author
+    - 更新所有三个 README 文件（保留徽章，仅更新 URL）
+    - 更新 `.github/CODEOWNERS` 为您的 GitHub 用户名
+    - 更新 `docker/Dockerfile` 和 `.devcontainer/Dockerfile` 中的 Docker 标签
 
 4. **验证设置**：
-   ```bash
-   make format                   # 运行 pre-commit hooks
-   make test                     # 运行测试
-   uv run your_project_name      # 测试您的 CLI
-   ```
+
+    ```bash
+    make format                   # 运行 pre-commit hooks
+    make test                     # 运行测试
+    uv run your_project_name      # 测试您的 CLI
+    ```
 
 ### 模板开发者（测试此模板）
 
