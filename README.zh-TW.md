@@ -18,6 +18,8 @@
 
 🚀 幫助 Python 開發者「快速建立新專案」的模板。內建現代化套件管理、工具鏈、Docker 與完整 CI/CD 工作流程。
 
+> **重要提示**：這是一個模板倉庫。請勿直接在此倉庫上開發。應點擊下方按鈕建立您自己的專案，並依照設定說明操作。
+
 點擊 [使用此模板](https://github.com/Mai0313/repo_template/generate) 後即可開始。
 
 其他語言: [English](README.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
@@ -45,42 +47,52 @@
 
 ## 🚀 快速開始
 
-需求：
+### 模板使用者（建立新專案）
 
-- Python 3.11–3.14
-- `uv`（可用 `make uv-install` 安裝）
-- pre-commit hooks：`uv tool install pre-commit` 或 `uv sync --group dev`
+這是啟動新專案的推薦工作流程：
 
-本機安裝：
+1. **建立您的倉庫**：點擊 [使用此模板](https://github.com/Mai0313/repo_template/generate) 建立新倉庫
+
+2. **複製並設定**：
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/your_new_project.git
+   cd your_new_project
+   make uv-install               # 安裝 uv（僅需一次）
+   uv sync                       # 安裝依賴
+   uv tool install pre-commit    # 安裝 pre-commit
+   ```
+
+3. **重新命名專案**：
+   - 將 `src/repo_template/` 目錄重新命名為 `src/your_project_name/`
+   - 更新所有從 `repo_template` 到 `your_project_name` 的匯入
+   - 更新 `pyproject.toml` 中的專案詳情：
+     - 專案名稱、版本、描述、作者
+     - 首頁和倉庫 URL
+     - CLI 腳本名稱（如需要）
+   - 更新 `mkdocs.yml`：site_name、site_url、repo_name、repo_url、site_author
+   - 更新所有三個 README 檔案（保留徽章，僅更新 URL）
+   - 更新 `.github/CODEOWNERS` 為您的 GitHub 使用者名稱
+   - 更新 `docker/Dockerfile` 和 `.devcontainer/Dockerfile` 中的 Docker 標籤
+
+4. **驗證設定**：
+   ```bash
+   make format                   # 執行 pre-commit hooks
+   make test                     # 執行測試
+   uv run your_project_name      # 測試您的 CLI
+   ```
+
+### 模板開發者（測試此模板）
+
+如果您正在為此模板做貢獻：
 
 ```bash
-make uv-install
-uv sync                     # 安裝基礎依賴
-uv tool install pre-commit  # 或：uv sync --group dev
-make format
-make test
+make uv-install               # 安裝 uv
+uv sync                       # 安裝依賴
+uv tool install pre-commit    # 安裝 pre-commit
+make format                   # 執行 pre-commit hooks
+make test                     # 執行測試
+uv run repo_template          # 測試範例 CLI
 ```
-
-執行範例 CLI：
-
-```bash
-uv run repo_template
-```
-
-作為模板使用（推薦）：
-
-1. 點擊「使用此模板」建立新倉庫
-2. 全域替換名稱：
-
-```bash
-# 套件/模組名稱
-find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/repo_template/your_package_name/g'
-
-# 專案顯示標題
-find . -type f -name "*.py" -o -name "*.md" -o -name "*.toml" | xargs sed -i 's/RepoTemplate/YourProjectTitle/g'
-```
-
-1. 更新 `pyproject.toml` 中的作者/描述等中繼資料
 
 ## 🧰 指令一覽
 
