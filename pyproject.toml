@@ -445,6 +445,75 @@ line-ending = "auto"
 quote-style = "double"
 skip-magic-trailing-comma = true
 
+
+# ================== #
+#         ty         #
+# ================== #
+# https://docs.astral.sh/ty/reference/configuration/
+
+# Configures the enabled rules and their severity.
+# Keys are rule names or "all" to set a default for all rules.
+# Valid values: "ignore" | "warn" | "error"
+# Default: {}
+[tool.ty.rules]
+# Example:
+# possibly-unresolved-reference = "warn"
+# division-by-zero = "ignore"
+
+# Analysis settings
+[tool.ty.analysis]
+# A list of module glob patterns for which `unresolved-import` diagnostics should be suppressed.
+allowed-unresolved-imports = []
+
+# A list of module glob patterns whose imports should be replaced with `typing.Any`.
+replace-imports-with-any = []
+
+# Whether ty should respect `type: ignore` comments.
+respect-type-ignore-comments = true
+
+# Environment settings
+[tool.ty.environment]
+# User-provided paths that should take first priority in module resolution.
+extra-paths = []
+
+# Path to your project's Python environment or interpreter.
+# python = null  # e.g. ".venv/bin/python3" or ".venv"
+
+# Specifies the target platform for analysis.
+# python-platform = "<current-platform>"  # "win32" | "darwin" | "android" | "ios" | "linux" | "all"
+
+# Specifies the version of Python used to analyze the source code.
+# python-version = "3.11"
+
+# The root paths of the project, used for finding first-party modules.
+# root = null  # e.g. ["./src", "./lib"]
+
+# Optional path to a custom typeshed directory.
+# typeshed = null  # e.g. "/path/to/custom/typeshed"
+
+# Source file settings
+[tool.ty.src]
+# A list of file/directory patterns to exclude from type checking.
+# exclude = null  # e.g. ["generated", "*.proto"]
+
+# A list of files and directories to check.
+# include = null  # e.g. ["src", "tests"]
+
+# Whether to automatically exclude files ignored by .ignore/.gitignore.
+respect-ignore-files = true
+
+# (Deprecated: use environment.root instead)
+# root = null
+
+# Terminal / output settings
+[tool.ty.terminal]
+# Use exit code 1 if there are any warning-level diagnostics.
+error-on-warning = true
+
+# The format used for printing diagnostic messages.
+# "full" | "concise" | "github" | "gitlab" | "junit"
+output-format = "concise"
+
 # ================== #
 #      Logfire       #
 # ================== #
