@@ -52,4 +52,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr merge --merge chore/pre-commit-hooks
+          gh pr merge --squash --auto --delete-branch chore/pre-commit-hooks
