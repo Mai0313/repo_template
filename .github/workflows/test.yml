@@ -80,3 +80,6 @@ jobs:
           pytest-coverage-path: ./.coverage.txt
           junitxml-path: ./.github/reports/.coverage.pytest.xml
           pytest-xml-coverage-path: ./.github/reports/coverage.xml
+          unique-id-for-comment: ${{ matrix.python-version }}-${{ matrix.os }}
+          title: Coverage for Python ${{ matrix.python-version }} on ${{ matrix.os }}
+          hide-emoji: true
