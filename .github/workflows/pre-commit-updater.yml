@@ -11,6 +11,7 @@ permissions: write-all
 
 jobs:
   auto-update:
+    name: Auto Update Pre-Commit Hooks
     runs-on: ubuntu-latest
 
     steps:

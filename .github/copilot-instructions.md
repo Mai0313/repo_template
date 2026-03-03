@@ -151,6 +151,26 @@ make format                   # Run pre-commit hooks
 
 ## CI/CD Workflows
 
+### GitHub Actions Conventions
+
+When creating or modifying `.github/workflows/*.yml` files, adhere to the following formatting and structuring rules to maintain consistency:
+
+- **Jobs Order**: Keys within a job must be ordered as follows:
+  1. `name`
+  2. `needs`
+  3. `runs-on`
+  4. `if`
+- **Steps Order**: Keys within a step must be ordered as follows:
+  1. `name`
+  2. `id`
+  3. `continue-on-error`
+  4. `if`
+  5. `uses`
+  6. `with`
+  7. `env`
+  8. `shell` / `run` (Keep `shell` right above `run`)
+- **Environment Variables**: Avoid defining redundant or meaningless environment variables (e.g., `PR_URL: ${{ github.event.pull_request.html_url }}`) if they are only used once in a run command. Use the value directly in the command instead.
+
 ### Test Workflow (.github/workflows/test.yml)
 
 - Runs pytest with coverage reports
