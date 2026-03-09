@@ -17,6 +17,7 @@ services:
 
   redis:
     image: redis:alpine
+    command: redis-server --maxclients 10000
     healthcheck:
       test: redis-cli ping
       interval: 5s
@@ -32,6 +33,7 @@ services:
 
   postgresql:
     image: postgres:alpine
+    command: postgres -c max_connections=500 -c shared_buffers=256MB
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
@@ -52,6 +54,7 @@ services:
 
   mongodb:
     image: mongo:latest
+    command: mongod --maxConns 5000
     healthcheck:
       test: mongosh --eval "db.adminCommand('ping')"
       interval: 5s
@@ -68,6 +71,7 @@ services:
 
   mysql:
     image: mysql:latest
+    command: --max_connections=500
     healthcheck:
       test: mysqladmin ping -h localhost
       interval: 5s
