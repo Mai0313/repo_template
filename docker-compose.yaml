@@ -25,7 +25,8 @@ services:
     ports:
       - 127.0.0.1:${REDIS_PORT:-6379}:6379
     volumes:
-      - redis-data:/var/lib/redis
+      - ./data/redis:/var/lib/redis
+      # - redis-data:/var/lib/redis
     restart: always
     pull_policy: always
 
@@ -44,7 +45,8 @@ services:
     ports:
       - 127.0.0.1:${POSTGRES_PORT:-5432}:5432
     volumes:
-      - postgresql-data:/var/lib/postgresql/data
+      - ./data/postgresql:/var/lib/postgresql/data
+      # - postgresql-data:/var/lib/postgresql/data
     restart: always
     pull_policy: always
 
@@ -59,7 +61,8 @@ services:
     ports:
       - 127.0.0.1:${MONGO_PORT:-27017}:${MONGO_PORT:-27017}
     volumes:
-      - mongo-data:/data/db
+      - ./data/mongodb:/data/db
+      # - mongo-data:/data/db
     restart: always
     pull_policy: always
 
@@ -79,12 +82,13 @@ services:
       MYSQL_USER: ${MYSQL_USER:-mysql}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-mysql}
     volumes:
-      - mysql-data:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
+      # - mysql-data:/var/lib/mysql
     restart: always
     pull_policy: always
 
-volumes:
-  redis-data: {}
-  mysql-data: {}
-  mongo-data: {}
-  postgresql-data: {}
+# volumes:
+#   redis-data: {}
+#   mysql-data: {}
+#   mongo-data: {}
+#   postgresql-data: {}
