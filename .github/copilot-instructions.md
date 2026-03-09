@@ -73,6 +73,7 @@ make format                   # Run pre-commit hooks
 - Hooks run on: pre-commit, post-checkout, post-merge, post-rewrite
 - This ensures consistency across branch switches and merges
 - Use `make format` to manually trigger all hooks
+- **After every code change, always run `uv run pre-commit run -a` (or `make format`) to ensure all hooks pass before committing.**
 
 ## Code Conventions
 
@@ -351,6 +352,7 @@ make test                     # Verify tests pass
 
 ## Critical Usage Guidelines
 
+- **After every code change, always run `uv run pre-commit run -a` (or `make format`) before committing to ensure all hooks (ruff, mypy, mdformat, codespell, etc.) pass.**
 - **All commit messages and PR titles must be in English and follow [Conventional Commits](https://www.conventionalcommits.org/)** (e.g. `feat: add login page`, `fix(api): handle null response`)
 - Always use `uv sync` for installing dependencies, never use `pip install`
 - Always prefix script execution with `uv run <command>` to ensure correct environment
