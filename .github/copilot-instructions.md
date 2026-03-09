@@ -112,6 +112,37 @@ make format                   # Run pre-commit hooks
 - Import local packages: Use `from repo_template.module import ...` (never relative)
 - Scripts with dependencies: Use PEP 723 inline metadata (see `scripts/gen_docs.py` header)
 
+## Git Conventions
+
+### Commit Messages
+
+- **All commit messages must be written in English** — no other languages are accepted.
+
+- Commit messages must follow the **Conventional Commits** specification:
+
+    ```
+    <type>[optional scope]: <description>
+
+    [optional body]
+
+    [optional footer(s)]
+    ```
+
+- Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `ci`, `perf`, `revert`
+
+- Examples:
+
+    - `feat(cli): add --verbose flag to output detailed logs`
+    - `fix(auth): handle token expiry edge case`
+    - `docs: update README with new installation steps`
+    - `chore: bump pre-commit hook versions`
+
+### Pull Request Titles
+
+- **All PR titles must be written in English** — no other languages are accepted.
+- PR titles must also follow the **Conventional Commits** format.
+- The PR title becomes the squash-merge commit message, so it must be descriptive and accurate.
+
 ## Documentation Generation
 
 ### Auto-Docs with gen_docs.py
@@ -320,6 +351,7 @@ make test                     # Verify tests pass
 
 ## Critical Usage Guidelines
 
+- **All commit messages and PR titles must be in English and follow [Conventional Commits](https://www.conventionalcommits.org/)** (e.g. `feat: add login page`, `fix(api): handle null response`)
 - Always use `uv sync` for installing dependencies, never use `pip install`
 - Always prefix script execution with `uv run <command>` to ensure correct environment
 - Coverage threshold is set in `[tool.pytest.ini_options]` at `--cov-fail-under=80`
