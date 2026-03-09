@@ -117,7 +117,7 @@ make format                   # Run pre-commit hooks
 ### Commit Messages
 
 - **All commit messages must be written in English** — no other languages are accepted.
-- Commit messages must follow the **[Conventional Commits](https://www.conventionalcommits.org/)** specification:
+- Commit messages must follow the **Conventional Commits** specification:
 
     ```
     <type>[optional scope]: <description>
@@ -137,7 +137,7 @@ make format                   # Run pre-commit hooks
 ### Pull Request Titles
 
 - **All PR titles must be written in English** — no other languages are accepted.
-- PR titles must also follow the **Conventional Commits** format (enforced automatically by `.github/workflows/semantic-pull-request.yml`).
+- PR titles must also follow the **Conventional Commits** format.
 - The PR title becomes the squash-merge commit message, so it must be descriptive and accurate.
 
 ## Documentation Generation
