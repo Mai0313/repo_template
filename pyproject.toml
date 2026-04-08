@@ -103,12 +103,11 @@ docs = [
     "griffe-typingdoc",
     "markdown-exec[ansi]",
     "mkdocs-autorefs",
-    "mkdocs-coverage",
-    "mkdocs-material",
     "mkdocstrings[python]",
     "rich",
     "ruff",
     "tabulate",
+    "zensical",
 ]
 
 [build-system]
@@ -168,8 +167,8 @@ main = "python ./src/repo_template/cli.py"
 
 # Documentation
 docs_gen = "make gen-docs"
-docs_deploy = "mkdocs gh-deploy --force --clean"
-docs_run = "mkdocs serve"
+docs_deploy = "zensical build"
+docs_run = "zensical serve"
 gen = ["docs_gen", "docs_deploy"]
 docs = ["docs_gen", "docs_run"]
 

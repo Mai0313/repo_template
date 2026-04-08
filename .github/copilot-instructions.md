@@ -18,7 +18,7 @@ If a user asks to add features or modify code, first confirm whether they want t
 
 ## Project Overview
 
-This is a **production-ready Python project template** using modern tooling with `uv` for dependency management, comprehensive CI/CD, Docker support, and MkDocs Material documentation. The template provides a complete scaffold that can be quickly adapted for new Python projects.
+This is a **production-ready Python project template** using modern tooling with `uv` for dependency management, comprehensive CI/CD, Docker support, and Zensical documentation. The template provides a complete scaffold that can be quickly adapted for new Python projects.
 
 ## Critical Architecture Decisions
 
@@ -58,7 +58,7 @@ make format                   # Run pre-commit hooks
 - `make test` - Run pytest with coverage (80% minimum, fails below threshold)
 - `make clean` - Remove all build artifacts, caches, and generated docs
 - `make gen-docs` - Generate API docs from `src/` and `scripts/` into `docs/Reference/` and `docs/Scripts/`
-- `uv run mkdocs serve` - Start docs server at `http://0.0.0.0:9987`
+- `uv run zensical serve` - Start docs server at `http://0.0.0.0:9987`
 
 ### Testing Philosophy
 
@@ -156,7 +156,7 @@ make format                   # Run pre-commit hooks
 - Concurrency controlled via `--concurrency` (default: 10)
 - Excludes: `.venv` by default, customize with `--exclude`
 
-### MkDocs Material Configuration
+### Zensical Configuration
 
 - Docs server: `http://0.0.0.0:9987` (not localhost)
 - Uses mkdocstrings with inheritance diagrams via `show_inheritance_diagram: true`
@@ -219,7 +219,7 @@ When creating or modifying `.github/workflows/*.yml` files, adhere to the follow
 ### Documentation Deploy (.github/workflows/deploy.yml)
 
 - Auto-generates docs with `make gen-docs`
-- Deploys to GitHub Pages via `mkdocs gh-deploy`
+- Builds site via `zensical build` and deploys to GitHub Pages
 
 ### Docker Image Build (.github/workflows/build_image.yml)
 
@@ -257,7 +257,7 @@ When creating or modifying `.github/workflows/*.yml` files, adhere to the follow
 
 - Alternative to Makefile: `uv run poe <task>`
 - Tasks defined in `[tool.poe.tasks]` section of pyproject.toml
-- Example: `uv run poe docs` runs `make gen-docs` then `mkdocs serve`
+- Example: `uv run poe docs` runs `make gen-docs` then `zensical serve`
 
 ### i18n Documentation
 

@@ -32,7 +32,7 @@
 - 类型严谨：mypy + Pydantic 插件设置
 - pytest + coverage + xdist；PR 覆盖率摘要留言
     - 覆盖率门槛 80%，HTML/XML 报告输出至 `.github/`
-- MkDocs Material + mkdocstrings（继承图）、markdown-exec、MathJax
+- Zensical + mkdocstrings（继承图）、markdown-exec、MathJax
     - 开发服务器 `0.0.0.0:9987`；双语文档脚手架
 - 文档生成脚本：支持 class/文件两种模式、可选执行 notebook、可并发、保留目录结构
     - 使用 anyio 异步处理与 rich 进度条
@@ -123,24 +123,25 @@ uv sync --group docs    # 安装文档用依赖
 
 ## 📚 文档系统
 
-- 使用 MkDocs Material
-- 生成与预览：
+文档使用 [Zensical](https://zensical.org/) 构建，并通过 `scripts/gen_docs.py` 从源码自动生成。
+
+### 快速开始
 
 ```bash
 uv sync --group docs
-make gen-docs
-uv run mkdocs serve    # http://localhost:9987
+make gen-docs                  # 从源码生成 markdown
+uv run zensical serve          # http://0.0.0.0:9987
 ```
 
-- 自动生成脚本：`scripts/gen_docs.py`（支持 .py 与 .ipynb）
+### `make gen-docs` 流程
 
-```bash
-# 以 class 为单位（默认）
-uv run python ./scripts/gen_docs.py --source ./src --output ./docs/Reference gen_docs
+1. 清理并重建 `docs/` 目录
+2. 复制 `README.md`、`README.zh-CN.md`、`README.zh-TW.md` 至 `docs/`
+3. 执行 `gen_docs.py` 两次生成 API reference：
+    - `./src` → `./docs/Reference`（库 API）
+    - `./scripts` → `./docs/Scripts`（工具脚本）
 
-# 以文件为单位
-uv run python ./scripts/gen_docs.py --source ./src --output ./docs/Reference --mode file gen_docs
-```
+`scripts/gen_docs.py` 支持 `.py` 与 `.ipynb` 文件，两种模式：`class`（默认，每个 class 生成一个 mkdocstrings directive）和 `file`（每个文件一个）。详见 `--help`。
 
 ## 🐳 Docker 与本机服务
 
@@ -236,7 +237,7 @@ uvx poe docs
 - Docs Deploy（`deploy.yml`）
 
     - 触发：推送到 `main` 与 `v*` 标签
-    - 构建并发布 MkDocs 网站到 GitHub Pages
+    - 构建并发布 Zensical 网站到 GitHub Pages
     - 需在 GitHub 启用 Pages（Actions → Pages）
 
 - Build and Release（`build_release.yml`）
