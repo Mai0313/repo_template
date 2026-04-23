@@ -60,7 +60,7 @@
     cd your_new_project
     make uv-install               # 安裝 uv（僅需一次）
     uv sync                       # 安裝依賴
-    uv tool install pre-commit    # 安裝 pre-commit
+    uvx pre-commit install        # 安裝 pre-commit git hooks
     ```
 
 3. **重新命名專案**：
@@ -79,7 +79,7 @@
 4. **驗證設定**：
 
     ```bash
-    make format                   # 執行 pre-commit hooks
+    make fmt                      # 執行 pre-commit hooks
     make test                     # 執行測試
     uv run your_project_name      # 測試您的 CLI
     ```
@@ -91,8 +91,8 @@
 ```bash
 make uv-install               # 安裝 uv
 uv sync                       # 安裝依賴
-uv tool install pre-commit    # 安裝 pre-commit
-make format                   # 執行 pre-commit hooks
+uvx pre-commit install        # 安裝 pre-commit git hooks
+make fmt                      # 執行 pre-commit hooks
 make test                     # 執行測試
 uv run repo_template          # 測試範例 CLI
 ```
@@ -103,7 +103,7 @@ uv run repo_template          # 測試範例 CLI
 # 開發
 make help               # 顯示 Makefile 指令列表
 make clean              # 清理快取、產物與產生的文件
-make format             # 執行所有 pre-commit hooks
+make fmt                # 執行所有 pre-commit hooks
 make test               # 執行 pytest
 make gen-docs           # 從 src/ 與 scripts/ 生成文件
 

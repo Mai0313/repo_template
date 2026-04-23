@@ -48,13 +48,13 @@ This is a **production-ready Python project template** using modern tooling with
 ```bash
 make uv-install               # Install uv (only needed once)
 uv sync                       # Install all dependencies
-uv tool install pre-commit    # Or: uv sync --group dev
-make format                   # Run pre-commit hooks
+uvx pre-commit install        # Or: uv sync --group dev
+make fmt                      # Run pre-commit hooks
 ```
 
 ### Common Commands
 
-- `make format` or `uv run pre-commit run -a` - Run ALL pre-commit hooks (ruff, mypy, mdformat, codespell, nbstripout, gitleaks)
+- `make fmt` or `uv run pre-commit run -a` - Run ALL pre-commit hooks (ruff, mypy, mdformat, codespell, nbstripout, gitleaks)
 - `make test` - Run pytest with coverage (80% minimum, fails below threshold)
 - `make clean` - Remove all build artifacts, caches, and generated docs
 - `make gen-docs` - Generate API docs from `src/` and `scripts/` into `docs/Reference/` and `docs/Scripts/`
@@ -72,8 +72,8 @@ make format                   # Run pre-commit hooks
 
 - Hooks run on: pre-commit, post-checkout, post-merge, post-rewrite
 - This ensures consistency across branch switches and merges
-- Use `make format` to manually trigger all hooks
-- **After every code change, always run `uv run pre-commit run -a` (or `make format`) to ensure all hooks pass before committing.**
+- Use `make fmt` to manually trigger all hooks
+- **After every code change, always run `uv run pre-commit run -a` (or `make fmt`) to ensure all hooks pass before committing.**
 
 ## Code Conventions
 
@@ -331,8 +331,8 @@ Replace author details with your own:
 
 ```bash
 uv sync                       # Install dependencies
-uv tool install pre-commit    # Setup pre-commit
-make format                   # Run pre-commit hooks
+uvx pre-commit install        # Setup pre-commit git hooks
+make fmt                      # Run pre-commit hooks
 make test                     # Verify tests pass
 ```
 
@@ -352,7 +352,7 @@ make test                     # Verify tests pass
 
 ## Critical Usage Guidelines
 
-- **After every code change, always run `uv run pre-commit run -a` (or `make format`) before committing to ensure all hooks (ruff, mypy, mdformat, codespell, etc.) pass.**
+- **After every code change, always run `uv run pre-commit run -a` (or `make fmt`) before committing to ensure all hooks (ruff, mypy, mdformat, codespell, etc.) pass.**
 - **All commit messages and PR titles must be in English and follow [Conventional Commits](https://www.conventionalcommits.org/)** (e.g. `feat: add login page`, `fix(api): handle null response`)
 - Always use `uv sync` for installing dependencies, never use `pip install`
 - Always prefix script execution with `uv run <command>` to ensure correct environment

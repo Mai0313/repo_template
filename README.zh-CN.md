@@ -60,7 +60,7 @@
     cd your_new_project
     make uv-install               # 安装 uv（仅需一次）
     uv sync                       # 安装依赖
-    uv tool install pre-commit    # 安装 pre-commit
+    uvx pre-commit install        # 安装 pre-commit git hooks
     ```
 
 3. **重命名项目**：
@@ -79,7 +79,7 @@
 4. **验证设置**：
 
     ```bash
-    make format                   # 运行 pre-commit hooks
+    make fmt                      # 运行 pre-commit hooks
     make test                     # 运行测试
     uv run your_project_name      # 测试您的 CLI
     ```
@@ -91,8 +91,8 @@
 ```bash
 make uv-install               # 安装 uv
 uv sync                       # 安装依赖
-uv tool install pre-commit    # 安装 pre-commit
-make format                   # 运行 pre-commit hooks
+uvx pre-commit install        # 安装 pre-commit git hooks
+make fmt                      # 运行 pre-commit hooks
 make test                     # 运行测试
 uv run repo_template          # 测试示例 CLI
 ```
@@ -103,7 +103,7 @@ uv run repo_template          # 测试示例 CLI
 # 开发
 make help               # 显示 Makefile 命令列表
 make clean              # 清理缓存、产物与产生的文档
-make format             # 执行所有 pre-commit hooks
+make fmt                # 执行所有 pre-commit hooks
 make test               # 执行 pytest
 make gen-docs           # 从 src/ 与 scripts/ 生成文档
 

@@ -60,7 +60,7 @@ This is the recommended workflow for starting a new project:
     cd your_new_project
     make uv-install               # Install uv (only needed once)
     uv sync                       # Install dependencies
-    uv tool install pre-commit    # Install pre-commit
+    uvx pre-commit install        # Install pre-commit git hooks
     ```
 
 3. **Rename the Project**:
@@ -79,7 +79,7 @@ This is the recommended workflow for starting a new project:
 4. **Verify Setup**:
 
     ```bash
-    make format                   # Run pre-commit hooks
+    make fmt                      # Run pre-commit hooks
     make test                     # Run tests
     uv run your_project_name      # Test your CLI
     ```
@@ -91,8 +91,8 @@ If you're contributing to this template:
 ```bash
 make uv-install               # Install uv
 uv sync                       # Install dependencies
-uv tool install pre-commit    # Install pre-commit
-make format                   # Run pre-commit hooks
+uvx pre-commit install        # Install pre-commit git hooks
+make fmt                      # Run pre-commit hooks
 make test                     # Run tests
 uv run repo_template          # Test example CLI
 ```
@@ -103,7 +103,7 @@ uv run repo_template          # Test example CLI
 # Development
 make help               # List available make targets
 make clean              # Clean caches, artifacts and generated docs
-make format             # Run all pre-commit hooks
+make fmt                # Run all pre-commit hooks
 make test               # Run pytest across the repository
 make gen-docs           # Generate docs from src/ and scripts/
 
