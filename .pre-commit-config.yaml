@@ -137,5 +137,3 @@ repos:
       # - id: pip-compile
       #   args: [pyproject.toml]
       #   files: ^pyproject\.(toml|ini)$
-
-  #       always_run: true
