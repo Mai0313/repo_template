@@ -109,13 +109,6 @@ repos:
         additional_dependencies:
           - tomli
 
-  # - repo: local
-  #   hooks:
-  #     - id: code2flow
-  #       name: Code2Flow
-  #       language: system
-  #       entry: bash -c 'if command -v code2flow >/dev/null 2>&1; then code2flow **/**/*.py -o ./.github/code2flow/flow.png; else echo "code2flow not installed, skipping"; fi'
-
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.20.2
     hooks:
@@ -127,14 +120,6 @@ repos:
           - "Types-urllib3"
           - "Types-redis"
           - "Types-attrs"
-
-  # - repo: local
-  #   hooks:
-  #     - id: update-version
-  #       name: Update project version in pyproject.toml
-  #       entry: bash -c 'VERSION=$(uvx dunamai from git --bump --no-metadata --style pep440) && uv version $VERSION'
-  #       language: system
-  #       pass_filenames: false
 
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.0
@@ -153,19 +138,4 @@ repos:
       #   args: [pyproject.toml]
       #   files: ^pyproject\.(toml|ini)$
 
-  # - repo: https://github.com/RobertCraigie/pyright-python
-  #   rev: v1.1.374
-  #   hooks:
-  #   - id: pyright
-
-  # # Pytest
-  # - repo: local
-  #   hooks:
-  #     - id: pytest
-  #       name: Run pytest
-  #       entry: bash -c 'if command -v pytest >/dev/null 2>&1; then pytest -vv; else echo "pytest not installed, skipping tests"; fi'
-  #       language: system
-  #       types:
-  #         - python
-  #       pass_filenames: false
   #       always_run: true
