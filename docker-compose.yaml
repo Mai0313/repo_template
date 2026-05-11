@@ -4,14 +4,15 @@ services:
   #     context: .
   #     dockerfile: ./docker/Dockerfile
   #     target: prod
-  #   env_file:
-  #     - .env
   #   command:
   #     - uv
   #     - run
-  #     - --no-dev
-  #     - --frozen
   #     - repo_template
+  #   environment:
+  #     UV_NO_DEV: 1
+  #     UV_FROZEN: 1
+  #   env_file:
+  #     - .env
   #   restart: always
   #   pull_policy: always
 
