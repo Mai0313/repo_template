@@ -167,7 +167,7 @@ make fmt                      # Run pre-commit hooks
 
 ### Multi-Stage Dockerfile
 
-- Base: `nikolaik/python-nodejs:python3.11-nodejs22` (Python + Node.js)
+- Base: `python:3.12-slim-bookworm` (Python)
 - Uses official `ghcr.io/astral-sh/uv:latest` for uv/uvx binaries
 - Production stage: `uv sync --no-dev` for minimal image
 - Workdir: `/app`
