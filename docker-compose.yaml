@@ -4,6 +4,7 @@ services:
   #     context: .
   #     dockerfile: ./docker/Dockerfile
   #     target: prod
+  #   user: "1000:1000"
   #   command:
   #     - uv
   #     - run
@@ -11,6 +12,7 @@ services:
   #   environment:
   #     UV_NO_DEV: 1
   #     UV_FROZEN: 1
+  #     UV_NO_SYNC: 1
   #   env_file:
   #     - .env
   #   restart: always
