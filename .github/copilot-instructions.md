@@ -206,7 +206,7 @@ When creating or modifying `.github/workflows/*.yml` files, adhere to the follow
 ### Test Workflow (.github/workflows/test.yml)
 
 - Runs pytest with coverage reports
-- Matrix: Python 3.11, 3.12, 3.13, 3.14
+- Matrix: Python 3.12, 3.13, 3.14
 - Generates coverage badge and commits HTML report to `.github/coverage_html_report/`
 - PR comments with coverage summary
 
