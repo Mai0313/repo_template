@@ -187,7 +187,7 @@ system-certs = true
 no-binary = false
 offline = false
 prerelease = "if-necessary-or-explicit"
-preview = true
+preview-features = true
 
 # https://docs.astral.sh/uv/reference/settings/#index
 [[tool.uv.index]]
@@ -201,8 +201,12 @@ default = true
 
 [tool.uv.pip]
 universal = true
-annotation-style = "line"
+annotation-style = "split"
+compile-bytecode = true
+index-url = "https://pypi.org/simple"
 output-file = "requirements.txt"
+prerelease = "if-necessary-or-explicit"
+
 
 # ================== #
 #        RUFF        #
