@@ -6,6 +6,7 @@
 [![python](https://img.shields.io/badge/-Python_%7C_3.12%7C_3.13%7C_3.14-blue?logo=python&logoColor=white)](https://www.python.org/downloads/source/)
 [![uv](https://img.shields.io/badge/-uv_dependency_management-2C5F2D?logo=python&logoColor=white)](https://docs.astral.sh/uv/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![ty](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ty/main/assets/badge/v0.json)](https://github.com/astral-sh/ty)
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://docs.pydantic.dev/latest/contributing/#badges)
 [![tests](https://github.com/Mai0313/repo_template/actions/workflows/test.yml/badge.svg)](https://github.com/Mai0313/repo_template/actions/workflows/test.yml)
 [![code-quality](https://github.com/Mai0313/repo_template/actions/workflows/code-quality-check.yml/badge.svg)](https://github.com/Mai0313/repo_template/actions/workflows/code-quality-check.yml)
@@ -28,8 +29,8 @@ Other Languages: [English](README.md) | [繁體中文](README.zh-TW.md) | [简�
 
 - Modern `src/` layout and type‑hinted code
 - Fast dependency management via `uv`
-- Pre‑commit suite: ruff, mdformat(+plugins), codespell, nbstripout, mypy, uv hooks
-- Strong typing: mypy with Pydantic plugin configuration
+- Pre‑commit suite: ruff, mdformat(+plugins), codespell, nbstripout, ty, mypy, uv hooks
+- Strong typing: ty with strict rules; mypy runs alongside during the migration
 - Pytest with coverage and xdist; PR coverage summary comment
 - Coverage gate at 80% with HTML/XML reports committed under `.github/`
 - Zensical with mkdocstrings (inheritance diagrams), markdown‑exec, MathJax

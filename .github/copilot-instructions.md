@@ -54,7 +54,7 @@ make fmt                      # Run pre-commit hooks
 
 ### Common Commands
 
-- `make fmt` or `uv run pre-commit run -a` - Run ALL pre-commit hooks (ruff, mypy, mdformat, codespell, nbstripout, gitleaks)
+- `make fmt` or `uv run pre-commit run -a` - Run ALL pre-commit hooks (ruff, ty, mypy, mdformat, codespell, nbstripout, gitleaks)
 - `make test` - Run pytest with coverage (80% minimum, fails below threshold)
 - `make clean` - Remove all build artifacts, caches, and generated docs
 - `make gen-docs` - Generate API docs from `src/` and `scripts/` into `docs/Reference/` and `docs/Scripts/`
@@ -213,7 +213,7 @@ When creating or modifying `.github/workflows/*.yml` files, adhere to the follow
 ### Code Quality (.github/workflows/code-quality-check.yml)
 
 - Runs all pre-commit hooks via `uv run pre-commit run -a`
-- Includes ruff check, ruff format, mypy, and other linters
+- Includes ruff check, ruff format, ty, mypy, and other linters
 - Enforces pre-commit hook standards
 
 ### Documentation Deploy (.github/workflows/deploy.yml)
@@ -352,7 +352,7 @@ make test                     # Verify tests pass
 
 ## Critical Usage Guidelines
 
-- **After every code change, always run `uv run pre-commit run -a` (or `make fmt`) before committing to ensure all hooks (ruff, mypy, mdformat, codespell, etc.) pass.**
+- **After every code change, always run `uv run pre-commit run -a` (or `make fmt`) before committing to ensure all hooks (ruff, ty, mypy, mdformat, codespell, etc.) pass.**
 - **All commit messages and PR titles must be in English and follow [Conventional Commits](https://www.conventionalcommits.org/)** (e.g. `feat: add login page`, `fix(api): handle null response`)
 - Always use `uv sync` for installing dependencies, never use `pip install`
 - Always prefix script execution with `uv run <command>` to ensure correct environment
