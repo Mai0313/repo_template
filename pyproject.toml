@@ -145,7 +145,6 @@ exclude = [
     "/.nox",
     "/.cache",
     "/.pytest_cache",
-    "/.mypy_cache",
     "/.tox",
     "/.venv",
     "/.git",
@@ -486,7 +485,9 @@ ignore-words-list = ["ameba", "mke"]
 #         ty         #
 # ================== #
 
-# Gradually migrating from mypy to ty; ty runs before mypy in pre-commit.
+# ty is the only type checker. mypy was dropped because its pre-commit hook ran in an
+# isolated venv that could not resolve this package, so it reported success on code it
+# never checked; see #406.
 # https://docs.astral.sh/ty/reference/configuration
 # https://docs.astral.sh/ty/reference/rules
 # Based on: https://docs.astral.sh/ty/coming-from-mypy-or-pyright/#stricter-checking-with-ty
@@ -504,40 +505,3 @@ possibly-missing-import = "warn"
 
 [tool.ty.analysis]
 strict-literal-narrowing = true
-
-
-# ================== #
-#        Mypy        #
-# ================== #
-
-[tool.mypy]
-plugins = ["pydantic.mypy"]
-# strict = true
-explicit_package_bases = true
-cache_dir = "~/.cache/.mypy_cache"
-# exclude = ["^tests/"]
-ignore_missing_imports = true
-warn_unused_configs = true
-warn_return_any = false
-warn_redundant_casts = true
-warn_unused_ignores = true
-disable_error_code = ["attr-defined", "prop-decorator"]
-follow_imports = "silent"
-
-# from https://blog.wolt.com/engineering/2021/09/30/professional-grade-mypy-configuration/
-# no_implicit_reexport = true
-# no_implicit_optional = true
-# check_untyped_defs = true
-# show_error_codes = true
-
-# disallow_untyped_defs = true
-# disallow_incomplete_defs = true
-# disallow_any_generics = true
-# disallow_untyped_decorators = true
-# disallow_any_unimported = true
-
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = false
-warn_untyped_fields = true
