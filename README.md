@@ -29,8 +29,8 @@ Other Languages: [English](README.md) | [繁體中文](README.zh-TW.md) | [简�
 
 - Modern `src/` layout and type‑hinted code
 - Fast dependency management via `uv`
-- Pre‑commit suite: ruff, mdformat(+plugins), codespell, nbstripout, ty, mypy, uv hooks
-- Strong typing: ty with strict rules; mypy runs alongside during the migration
+- Pre‑commit suite: ruff, mdformat(+plugins), codespell, nbstripout, ty, uv hooks
+- Strong typing: ty with strict rules, checked against the real project environment
 - Pytest with coverage and xdist; PR coverage summary comment
 - Coverage gate at 80% with HTML/XML reports committed under `.github/`
 - Zensical with mkdocstrings (inheritance diagrams), markdown‑exec, MathJax
