@@ -77,7 +77,7 @@ uv python install 3.12
 Common tasks are exposed via the `Makefile`. Run `make help` to list all targets. Frequently used ones:
 
 ```bash
-make fmt       # Run pre-commit hooks (ruff, mdformat, codespell, ty, mypy, ...)
+make fmt       # Run pre-commit hooks (ruff, mdformat, codespell, ty, ...)
 make test      # Run the test suite
 make gen-docs  # Generate documentation
 make clean     # Remove caches and build artifacts
@@ -173,7 +173,7 @@ Pull requests are typically merged via **squash merge** to keep history linear.
 ## Coding Standards
 
 - **Formatting and linting**: handled by `ruff` (configured in `pyproject.toml`)
-- **Typing**: `ty` runs first with strict rules; `mypy` (with the Pydantic plugin) runs alongside during the migration; new code should be type-annotated
+- **Typing**: `ty` with strict rules, running against the project environment so first-party imports resolve; new code should be type-annotated
 - **Spelling**: enforced by `codespell` via pre-commit
 - **Notebooks**: stripped of outputs by `nbstripout`
 

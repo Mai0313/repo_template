@@ -29,8 +29,8 @@
 
 - 现代 `src/` 布局 + 全面类型注解
 - `uv` 超快依赖管理
-- pre-commit 包链：ruff、mdformat（含多插件）、codespell、nbstripout、ty、mypy、uv hooks
-- 类型严谨：ty 严格规则；迁移期间与 mypy 并行
+- pre-commit 包链：ruff、mdformat（含多插件）、codespell、nbstripout、ty、uv hooks
+- 类型严谨：ty 严格规则，直接针对项目实际环境检查
 - pytest + coverage + xdist；PR 覆盖率摘要留言
     - 覆盖率门槛 80%，HTML/XML 报告输出至 `.github/`
 - Zensical + mkdocstrings（继承图）、markdown-exec、MathJax

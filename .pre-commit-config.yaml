@@ -117,18 +117,6 @@ repos:
         # needs every dependency group, not just the default ones.
         args: ["--all-groups"]
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.3.0
-    hooks:
-      - id: mypy
-        additional_dependencies:
-          - "Pydantic"
-          - "Types-PyYAML"
-          - "Types-requests"
-          - "Types-urllib3"
-          - "Types-redis"
-          - "Types-attrs"
-
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.0
     hooks:
