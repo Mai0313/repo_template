@@ -110,7 +110,7 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ty-pre-commit
-    rev: v0.0.64
+    rev: v0.0.65
     hooks:
       - id: ty
         # ty checks the whole repo (src, tests, scripts), so its environment
