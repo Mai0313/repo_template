@@ -15,7 +15,7 @@ default_stages:
 
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.2
+    rev: v0.16.3
     hooks:
       - id: ruff-check
         types_or: [ python, pyi, jupyter ]
@@ -110,7 +110,7 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ty-pre-commit
-    rev: v0.0.70
+    rev: v0.0.71
     hooks:
       - id: ty
         # ty checks the whole repo (src, tests, scripts), so its environment
