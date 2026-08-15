@@ -110,7 +110,7 @@ repos:
           - tomli
 
   - repo: https://github.com/astral-sh/ty-pre-commit
-    rev: v0.0.71
+    rev: v0.0.72
     hooks:
       - id: ty
         # ty checks the whole repo (src, tests, scripts), so its environment
@@ -123,7 +123,7 @@ repos:
       - id: gitleaks
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.12.3
+    rev: 0.12.5
     hooks:
       - id: uv-sync
         args: ["--all-groups"]
