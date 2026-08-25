@@ -75,7 +75,7 @@ This is the recommended workflow for starting a new project:
     - Update `mkdocs.yml`: site_name, site_url, repo_name, repo_url, site_author
     - Update all three README files (preserve badges, only update URLs)
     - Update `.github/CODEOWNERS` with your GitHub username
-    - Update Docker labels in `docker/Dockerfile` and `.devcontainer/Dockerfile`
+    - Update Docker labels in `docker/Dockerfile`
 
 4. **Verify Setup**:
 

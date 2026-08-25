@@ -75,7 +75,7 @@
     - 更新 `mkdocs.yml`：site_name、site_url、repo_name、repo_url、site_author
     - 更新所有三個 README 檔案（保留徽章，僅更新 URL）
     - 更新 `.github/CODEOWNERS` 為您的 GitHub 使用者名稱
-    - 更新 `docker/Dockerfile` 和 `.devcontainer/Dockerfile` 中的 Docker 標籤
+    - 更新 `docker/Dockerfile` 中的 Docker 標籤
 
 4. **驗證設定**：
 
