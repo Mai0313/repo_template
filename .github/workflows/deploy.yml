@@ -13,6 +13,7 @@ permissions: write-all
 jobs:
   deploy:
     name: Deploy
+    if: ${{ !github.event.repository.private }}
     runs-on: ubuntu-latest
 
     steps:
