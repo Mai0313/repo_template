@@ -70,11 +70,14 @@ jobs:
 
       - name: Run pytest
         if: ${{ steps.check_tests.outputs.has_tests == 'true' }}
+        # An explicit shell is what turns on pipefail, so tee cannot hide pytest's exit status.
+        shell: bash
         run: |
           uv run pytest -vv | tee .coverage.txt
 
       - name: Pytest coverage comment
-        if: ${{ steps.check_tests.outputs.has_tests == 'true' }}
+        # Also after a failing suite, which is when the comment is worth reading.
+        if: ${{ !cancelled() && steps.check_tests.outputs.has_tests == 'true' }}
         uses: MishaKav/pytest-coverage-comment@main
         with:
           pytest-coverage-path: ./.coverage.txt
