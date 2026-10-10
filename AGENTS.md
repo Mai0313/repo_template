@@ -53,7 +53,7 @@ The release workflow currently derives its executable path and artifact name fro
 
 `README.md`, `README.zh-TW.md`, and `README.zh-CN.md` are part of the initial product surface. Keep every existing badge in every README permanently. Existing badges may only be modified to update URLs, repository identities, supported versions, package links, workflow names, or display data, and new badges may be added only when there is a real target for them. There is no later-project exception that permits deleting an existing badge. Keep the three language versions consistent in meaning.
 
-Replace template-only prose such as the instruction to use this repository as a template. Retain and adapt useful sections for installation, local development, configuration, examples, support boundaries, security, and release use. Do not claim a package registry release, GitHub Pages site, Docker image, supported platform, or service integration until it is actually configured.
+Replace template-only prose such as the instruction to use this repository as a template. Retain and adapt useful sections for installation, configuration, examples, support boundaries, and security; local development and release use belong in `.github/CONTRIBUTING.md`. Do not claim a package registry release, GitHub Pages site, Docker image, supported platform, or service integration until it is actually configured.
 
 `mkdocs.yml` and `scripts/gen_docs.py` form a documentation pipeline. Update site and repository metadata before enabling publication. The generated `docs/` directory is ignored and rebuilt by `make gen-docs`; edit source READMEs and code docstrings rather than treating generated output as the source of truth.
 
@@ -75,7 +75,7 @@ Review each existing workflow against the project brief:
 | `auto_labeler.yml`, `semantic-pull-request.yml`                     | Do labels, branches, and Conventional Commit rules match the collaboration model?                                              |
 | `auto_review_merge.yml`, `pre-commit-updater.yml`, `dependabot.yml` | Is unattended dependency approval, merge, or update acceptable for the new repository?                                         |
 
-Adapt dependent configuration together: `.github/labeler.yml`, `.github/cliff.toml`, issue templates, `CODEOWNERS`, Dependabot ecosystems, and the README's CI descriptions. The current labeler includes Python, TypeScript, and JavaScript globs; refine it only after the selected stack is known. The current workflows use broad `write-all` permissions. Replace these with the minimum permissions required by each retained workflow when the required publishing and automation behavior is clear.
+Adapt dependent configuration together: `.github/labeler.yml`, `.github/cliff.toml`, issue templates, `CODEOWNERS`, Dependabot ecosystems, and the CI descriptions in `.github/CONTRIBUTING.md`. The current labeler includes Python, TypeScript, and JavaScript globs; refine it only after the selected stack is known. The current workflows use broad `write-all` permissions. Replace these with the minimum permissions required by each retained workflow when the required publishing and automation behavior is clear.
 
 Never put credentials in `.env.example`, source control, workflow files, or image labels. Define non-secret variable names and document where real secrets belong. Before enabling package publication, GHCR pushes, Pages deployment, release creation, or auto-merge, verify repository settings, token scopes, protected branches, and the required secrets outside the codebase.
 

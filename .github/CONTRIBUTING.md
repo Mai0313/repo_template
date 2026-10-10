@@ -9,11 +9,13 @@ Thank you for your interest in contributing to this Python project. This documen
 - [Reporting Issues](#reporting-issues)
 - [Development Setup](#development-setup)
 - [Local Workflow](#local-workflow)
+- [Local Services](#local-services)
 - [Testing](#testing)
 - [Documentation](#documentation)
 - [Branching Model](#branching-model)
 - [Commit Convention](#commit-convention)
 - [Pull Request Process](#pull-request-process)
+- [CI and Releases](#ci-and-releases)
 - [Code Review](#code-review)
 - [Coding Standards](#coding-standards)
 - [Security Reports](#security-reports)
@@ -85,6 +87,17 @@ make clean     # Remove caches and build artifacts
 
 Always run `make fmt` and `make test` before opening a pull request.
 
+Add dependencies with `uv add <pkg>`, or `uv add --dev <pkg>` for development-only ones. The optional dependency groups are declared under `[dependency-groups]` in `pyproject.toml`; install one with `uv sync --group <name>`. Shortcut tasks are defined under `[tool.poe.tasks]` and run with `uv run poe <task>`.
+
+## Local Services
+
+`docker-compose.yaml` defines optional local databases and an example `app` service that runs the CLI. Copy `.env.example` to `.env` to set their ports and credentials, then start only what you need:
+
+```bash
+docker compose up -d redis postgresql
+docker compose up -d app
+```
+
 ## Testing
 
 - Tests are written with **pytest** and live under `tests/`.
@@ -107,9 +120,12 @@ Add tests for every behavioral change. Bug fixes should include a regression tes
 Documentation uses **Zensical** with `mkdocstrings` and lives under `docs/`. To preview locally:
 
 ```bash
+uv sync --group docs
 make gen-docs
 uv run zensical serve  # http://0.0.0.0:9987
 ```
+
+`make gen-docs` deletes and rebuilds `docs/` from the READMEs and the docstrings under `src/` and `scripts/`, so edit those rather than the files under `docs/`. `uv run ./scripts/gen_docs.py --help` lists the generator's options.
 
 Update README, docstrings, and examples when changing public behavior. Documentation contributions are first-class and very welcome.
 
@@ -163,6 +179,21 @@ Append `!` after the type or include `BREAKING CHANGE:` in the footer to indicat
 8. Request review only after self-review and a green CI.
 
 Pull requests are typically merged via **squash merge** to keep history linear.
+
+## CI and Releases
+
+Workflows live in `.github/workflows/`, and each file states its own triggers. Some need repository settings that no file can carry:
+
+- A `UV_PUBLISH_TOKEN` secret, to publish to PyPI (Settings → Secrets and variables → Actions)
+- GitHub Pages with "GitHub Actions" as the source, to deploy the docs site (Settings → Pages)
+- Workflow permissions set to "Read and write", to push images to GHCR (Settings → Actions → General)
+
+To release, push a `v*` tag. CI builds the executables and the Python package, uploads them to a GitHub Release, and publishes to PyPI when `UV_PUBLISH_TOKEN` is set. To build or publish by hand:
+
+```bash
+uv build                         # wheel and sdist into dist/
+UV_PUBLISH_TOKEN=... uv publish
+```
 
 ## Code Review
 
