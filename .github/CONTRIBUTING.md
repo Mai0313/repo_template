@@ -157,7 +157,7 @@ Allowed types:
 | `feat`     | A new feature                                           |
 | `fix`      | A bug fix                                               |
 | `refactor` | Code change that neither fixes a bug nor adds a feature |
-| `doc`      | Documentation-only changes                              |
+| `docs`     | Documentation-only changes                              |
 | `perf`     | Performance improvement                                 |
 | `style`    | Formatting or stylistic changes                         |
 | `test`     | Adding or correcting tests                              |
@@ -212,7 +212,7 @@ Prefer clarity over cleverness, and avoid unrelated refactors in feature or fix 
 
 ## Security Reports
 
-Please **do not** report security vulnerabilities through public issues. Refer to [`SECURITY.md`](./SECURITY.md) for the responsible disclosure process.
+Please **do not** report security vulnerabilities through public issues. Refer to the [security policy](https://github.com/Mai0313/repo_template/security/policy) for the responsible disclosure process.
 
 ## Licensing
 
