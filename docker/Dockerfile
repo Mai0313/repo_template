@@ -34,11 +34,14 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --no-dev --frozen
 
 # Run as a non-root user so bind-mounted data/ files are not root-owned on the host.
+# The build stays root: apt needs it, and a root-owned venv the app cannot write is safer than an app-owned writable one.
 RUN groupadd --gid 1000 app \
     && useradd --create-home --uid 1000 --gid 1000 app
 
 # If your app writes to a directory at runtime, pre-create it before USER. Example:
 # RUN mkdir --parents /app/data && chown app:app /app/data
+# Chown only such directories, never /app as a whole (`COPY --chown`, `chown -R app /app`). For a permission error at runtime, check the process runs as UID 1000, then move whatever writes outside those directories, /tmp or /home/app.
 
+# UV_NO_SYNC keeps `uv run` from syncing the root-owned venv at startup; PYTHONDONTWRITEBYTECODE keeps __pycache__ out of the read-only /app.
 ENV PYTHONDONTWRITEBYTECODE=1 UV_NO_SYNC=1
 USER app
