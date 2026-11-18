@@ -43,7 +43,7 @@ Search the tracked repository, including hidden configuration, for `repo_templat
 For a Python project, choose a valid distribution name and a valid import name separately when needed. Hyphens may be suitable for a distribution but cannot be used in an import package. Rename `src/repo_template/`, update all first-party imports and tests, and then update all related fields in `pyproject.toml` together:
 
 - `[project]` metadata, `requires-python`, dependencies, and URLs;
-- `[project.scripts]` only if the project actually has a CLI;
+- `[project.scripts]` only if the project actually has a CLI. An operator tool with a `main()` and arguments lives inside the import package and gets an entry there, so it runs as `uv run <command>`; an entry cannot reach `scripts/`, which the wheel does not package. An edit-and-run development script stays in `scripts/` and runs with `uv run python -m scripts.<name>`;
 - Hatch build include and wheel package paths;
 - Poe tasks that point at `src/repo_template/cli.py`.
 
